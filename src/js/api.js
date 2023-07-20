@@ -2,18 +2,38 @@ import axios from 'axios';
 
 const API_URL = 'https://api.themoviedb.org/3/';
 const API_KEY = 'db8473ed9221bf51f65f6231fec5dca6';
+const ACCESS_TOKEN =
+  'eyJhbGciOiJIUzI1NiJ9.eyJhdWQiOiJkYjg0NzNlZDkyMjFiZjUxZjY1ZjYyMzFmZWM1ZGNhNiIsInN1YiI6IjY0YjlhODFmMzAwOWFhMDBjNWI3OTc1MiIsInNjb3BlcyI6WyJhcGlfcmVhZCJdLCJ2ZXJzaW9uIjoxfQ.-kZ0dgbGdwQSV2jydkgQdOLeOv-bFL8HeHwItjiQ9dk';
+
+async function authenticate() {
+  const response = await axios({
+    method: 'get',
+    url: API_URL + 'authentication',
+    headers: {
+      accept: 'application/json',
+      authorization: 'Bearer ' + ACCESS_TOKEN,
+    },
+  });
+
+  if (response.data.status_message != 'Success.') {
+    console.error('API: Authentication Failed!');
+  } else {
+    console.log('API: Authentication Success!');
+  }
+}
 
 async function get(path) {
   const url = API_URL + path;
   const accept = 'application/json';
+  const auth = ACCESS_TOKEN;
 
   try {
     return await axios({
-      method: 'get',
+      method: 'GET',
       url: url,
       headers: {
-        Accept: accept,
-        Authorization: API_KEY,
+        accept: accept,
+        authorization: 'Bearer ' + auth,
       },
     });
   } catch (error) {
@@ -32,10 +52,10 @@ async function get(path) {
 
     try {
       const response = await fetch(url, {
-        method: 'get',
+        method: 'GET',
         headers: {
-          Accept: accept,
-          Authorization: API_KEY,
+          accept: accept,
+          authorization: 'Bearer ' + auth,
         },
       });
 
@@ -54,6 +74,8 @@ async function get(path) {
     }
   }
 }
+
+authenticate();
 
 export default {
   get,

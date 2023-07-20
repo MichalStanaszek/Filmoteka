@@ -2,3 +2,16 @@
 
 @import './global/normalize';
 @import './global/components';
+
+@import './components/header';
+@import './components/search-form';
+@import './components/gallery';
+@import './components/movie-card';
+@import './components/pagination';
+@import './components/footer';
+@import './components/about-window';
+@import './components/movie-window';
+
+.hidden {
+  display: none;
+}

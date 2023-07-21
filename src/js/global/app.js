@@ -1,5 +1,5 @@
 import api from './api.js';
-import { Notiflix, Loading, Notify } from 'notiflix';
+import { Loading, Notify } from 'notiflix';
 
 async function apiTest(scriptFilename) {
   if (env == 'dev') {

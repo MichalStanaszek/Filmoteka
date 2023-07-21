@@ -27,14 +27,26 @@ function createMovieCardId(movieId) {
   return 'movie-' + movieId;
 }
 
+function getMovieIdFromMovieCardElement(moveCardElement) {
+  const movieId = moveCardElement.id.split("-");
+
+  return movieId[1];
+}
+
 const SEARCH_FORM_ELEMENT_ID = 'search-form';
+const WATCHED_BUTTON_ELEMENT_ID = "watched-button";
+const QUEUE_BUTTON_ELEMENT_ID = "queue-button";
+const MOVIE_CARDS_PARENT_ELEMENT_ID = 'gallery';
 const MOVIE_CARD_ELEMENTS_CSS_CLASS = 'movie-card';
+const LOCAL_STORAGE_QUEUE_KEY = 'queue_movies';
+const LOCAL_STORAGE_WATCH_KEY = 'watch_movies';
 const NUM_OF_MOVIES_PER_PAGE = 20;
 const PRIMARY_COLOR_HEX = '#FF6B01';
 const FONT_FAMILY = 'Roboto';
 
 let env = 'dev'; // or any other if we move to PRODUCTION stage
 let currentPage = 1;
+let renderMovieCardHTML = null;
 
 Loading.init({
   svgColor: PRIMARY_COLOR_HEX,
@@ -56,8 +68,15 @@ export default {
   apiTest,
   notiflixTest,
   createMovieCardId,
+  getMovieIdFromMovieCardElement,
   SEARCH_FORM_ELEMENT_ID,
+  WATCHED_BUTTON_ELEMENT_ID,
+  QUEUE_BUTTON_ELEMENT_ID,
+  MOVIE_CARDS_PARENT_ELEMENT_ID,
   MOVIE_CARD_ELEMENTS_CSS_CLASS,
+  LOCAL_STORAGE_QUEUE_KEY,
+  LOCAL_STORAGE_WATCH_KEY,
   NUM_OF_MOVIES_PER_PAGE,
   currentPage,
+  renderMovieCardHTML,
 };

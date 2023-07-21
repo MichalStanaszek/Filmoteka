@@ -16,7 +16,7 @@ async function notiflixTest() {
 
     setTimeout(function () {
       Notify.success('Notiflix Test');
-      console.log('project.js');
+      console.log('app.js');
 
       Loading.remove();
     }, 2000);
@@ -28,18 +28,22 @@ function createMovieCardId(movieId) {
 }
 
 function getMovieIdFromMovieCardElement(moveCardElement) {
-  const movieId = moveCardElement.id.split("-");
+  const movieId = moveCardElement.id.split('-');
 
   return movieId[1];
 }
 
 const SEARCH_FORM_ELEMENT_ID = 'search-form';
-const WATCHED_BUTTON_ELEMENT_ID = "watched-button";
-const QUEUE_BUTTON_ELEMENT_ID = "queue-button";
+
+const WATCHED_BUTTON_ELEMENT_ID = 'watched-button';
+const QUEUE_BUTTON_ELEMENT_ID = 'queue-button';
+
 const MOVIE_CARDS_PARENT_ELEMENT_ID = 'gallery';
 const MOVIE_CARD_ELEMENTS_CSS_CLASS = 'movie-card';
+
 const LOCAL_STORAGE_QUEUE_KEY = 'queue_movies';
 const LOCAL_STORAGE_WATCH_KEY = 'watch_movies';
+
 const NUM_OF_MOVIES_PER_PAGE = 20;
 const PRIMARY_COLOR_HEX = '#FF6B01';
 const FONT_FAMILY = 'Roboto';
@@ -57,9 +61,7 @@ Notify.init({
   fontFamily: FONT_FAMILY,
 });
 
-if (env == 'dev') {
-  notiflixTest();
-}
+notiflixTest();
 
 export default {
   api,

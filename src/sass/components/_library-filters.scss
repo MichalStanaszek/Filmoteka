@@ -1,22 +1,21 @@
-.button{
+.library-buttons{
+    display: block;
     margin: auto;
     text-align: center;
     justify-content: center;
     width: 129.53px;
     height: 44px;
-    border: 1px solid black ;
+    border: 1px solid $blackColor ; //do zmiany, ma być $whiteColor, ale nie widać na białym tle
     border-radius: 5px;
-    color: white;
+    color: $whiteColor;
     background-color: rgba(0, 0, 0, 0);
-    cursor:pointer;
-    &:focus{
+    cursor:auto;
+    transition: transform 0.2s;
+    &:hover, &:focus {
         background-color: $primaryColor;
         box-shadow: 0px 8px 43px 0px rgba($primaryColor, 0.5);
-    }
-    &:hover {
-        background-color: $primaryColor;
-        box-shadow: 0px 8px 43px 0px rgba($primaryColor, 0.5);
-    }
+        transform: scale(1.1);}
+        border: 1px solid none;
 @include tablet{
     width:152px;
 }

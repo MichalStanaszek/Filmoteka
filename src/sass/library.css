@@ -1,0 +1,75 @@
+@import '~node_modules/modern-normalize/modern-normalize.css';
+@import url("https://fonts.googleapis.com/css2?family=Roboto:wght@400;500&display=swap");
+* {
+  margin: 0;
+  padding: 0;
+}
+
+body {
+  font-family: "Roboto", sans-serif;
+  position: relative;
+}
+
+.inner-container {
+  max-width: 320px;
+  margin: 0px auto;
+}
+
+@media screen and (min-width: 768px) {
+  .inner-container {
+    max-width: 768px;
+  }
+}
+@media screen and (min-width: 1280px) {
+  .inner-container {
+    max-width: 1280px;
+  }
+}
+.button {
+  margin: auto;
+  text-align: center;
+  justify-content: center;
+  width: 129.53px;
+  height: 44px;
+  border: 1px solid black;
+  border-radius: 5px;
+  color: white;
+  background-color: rgba(0, 0, 0, 0);
+  cursor: pointer;
+}
+.button:focus {
+  background-color: #FF6B01;
+  box-shadow: 0px 8px 43px 0px rgba(255, 107, 1, 0.5);
+}
+.button:hover {
+  background-color: #FF6B01;
+  box-shadow: 0px 8px 43px 0px rgba(255, 107, 1, 0.5);
+}
+@media screen and (min-width: 768px) {
+  .button {
+    width: 152px;
+  }
+}
+@media screen and (min-width: 1280px) {
+  .button {
+    width: 147px;
+  }
+}
+
+.backdrop {
+  position: absolute;
+  top: 0px;
+  left: 0px;
+  width: 100vw;
+  height: 100vh;
+  z-index: 10;
+}
+
+.window {
+  position: absolute;
+  z-index: 9999;
+}
+
+.hidden {
+  display: none;
+}/*# sourceMappingURL=library.css.map */

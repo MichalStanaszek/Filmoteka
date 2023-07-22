@@ -1,0 +1,44 @@
+@import '~node_modules/modern-normalize/modern-normalize.css';
+@import url("https://fonts.googleapis.com/css2?family=Roboto:wght@400;500&display=swap");
+* {
+  margin: 0;
+  padding: 0;
+}
+
+body {
+  font-family: "Roboto", sans-serif;
+  position: relative;
+}
+
+.inner-container {
+  max-width: 320px;
+  margin: 0px auto;
+}
+
+@media screen and (min-width: 768px) {
+  .inner-container {
+    max-width: 768px;
+  }
+}
+@media screen and (min-width: 1280px) {
+  .inner-container {
+    max-width: 1280px;
+  }
+}
+.backdrop {
+  position: absolute;
+  top: 0px;
+  left: 0px;
+  width: 100vw;
+  height: 100vh;
+  z-index: 10;
+}
+
+.window {
+  position: absolute;
+  z-index: 9999;
+}
+
+.hidden {
+  display: none;
+}/*# sourceMappingURL=index.css.map */

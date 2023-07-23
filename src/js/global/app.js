@@ -53,9 +53,13 @@ let currentPage = 1;
 let currentWebPage = ""; // "home" or "library" ta zmienna jest ustawiana automatycznie przy starcie całej strony
 
 let renderMovieCardHTML = null; // do tej zmiennej trzeba przypisać funkcje renderowania karty filmu, funkcja ma pobierać obiekt filmu a zwracać html
-let getMoviesByKeyWord = null; // do tej zmiennej trzeba przypisać funkcje pobierania filmów z api
-let getMoviesTodayTrends = null; // do tej zmiennej trzeba przypisać funkcje pobierania filmów z api
-let getMovieByID = null; // do tej zmiennej trzeba przypisać funkcje pobierania filmu z api
+
+let getMoviesByKeyWord = null; // do tej zmiennej trzeba przypisać funkcje pobierania filmów z api, funkcja ma pobierać słowo kluczowe, a zwracać obiekt z filmami
+let getMoviesTodayTrends = null; // do tej zmiennej trzeba przypisać funkcje pobierania filmów z api, funkcja ma zwracać obiekt z filmami
+let getMovieByID = null; // do tej zmiennej trzeba przypisać funkcje pobierania filmu z api, funkcja ma pobierać id filmu a zwracać obiekt filmu
+
+let getQueuedMovies = null // do tej zmiennej trzeba przypisać funkcje pobierania filmów z Local Storage
+let getWatchedMovies = null // do tej zmiennej trzeba przypisać funkcje pobierania filmów z Local Storage
 
 Loading.init({
   svgColor: PRIMARY_COLOR_HEX,
@@ -79,6 +83,8 @@ export default {
   getMovieByID,
   getMoviesByKeyWord,
   getMoviesTodayTrends,
+  getWatchedMovies,
+  getQueuedMovies,
   SEARCH_FORM_ELEMENT_ID,
   WATCHED_BUTTON_ELEMENT_ID,
   QUEUE_BUTTON_ELEMENT_ID,

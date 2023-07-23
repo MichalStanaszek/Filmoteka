@@ -9,3 +9,5 @@ import './js/library';
 import './js/pagination-lib';
 import './js/footer';
 import './js/movie-window';
+
+console.log("Current Library Movies Page: " + app.currentPage);

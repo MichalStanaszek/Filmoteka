@@ -9,3 +9,5 @@ import './js/gallery';
 import './js/pagination-gallery';
 import './js/footer';
 import './js/movie-window';
+
+console.log("Current Home Movies Page: " + app.currentPage);

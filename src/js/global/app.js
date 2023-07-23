@@ -33,6 +33,7 @@ function getMovieIdFromMovieCardElement(moveCardElement) {
   return movieId[1];
 }
 
+const MOVIE_WINDOW_BACKDROP_DIV_ELEMENT_ID = 'movie-window-backdrop';
 const ABOUT_WINDOW_BACKDROP_DIV_ELEMENT_ID = 'about-window-backdrop';
 const SEARCH_FORM_ELEMENT_ID = 'search-form';
 
@@ -92,6 +93,7 @@ export default {
   getMoviesTodayTrends,
   getWatchedMovies,
   getQueuedMovies,
+  MOVIE_WINDOW_BACKDROP_DIV_ELEMENT_ID,
   ABOUT_WINDOW_BACKDROP_DIV_ELEMENT_ID,
   SEARCH_FORM_ELEMENT_ID,
   WATCHED_BUTTON_ELEMENT_ID,

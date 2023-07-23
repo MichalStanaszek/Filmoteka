@@ -33,6 +33,7 @@ function getMovieIdFromMovieCardElement(moveCardElement) {
   return movieId[1];
 }
 
+const ABOUT_WINDOW_BACKDROP_DIV_ELEMENT_ID = 'about-window-backdrop';
 const SEARCH_FORM_ELEMENT_ID = 'search-form';
 
 const WATCHED_BUTTON_ELEMENT_ID = 'watched-button';
@@ -50,7 +51,20 @@ const FONT_FAMILY = 'Roboto';
 
 let env = 'dev'; // or any other if we move to PRODUCTION stage
 let currentPage = 1;
-let renderMovieCardHTML = null;
+let currentWebPage = ""; // "home" or "library" ta zmienna jest ustawiana automatycznie przy starcie całej strony
+
+/*
+ UWAGA! Zanim użyjemy funkcji którejś z poniższych sprawdzamy za pomocą if czy ta funkcja już istnieje
+ */
+
+let renderMovieCardHTML = null; // do tej zmiennej trzeba przypisać funkcje renderowania karty filmu, funkcja ma pobierać obiekt filmu a zwracać html
+
+let getMoviesByKeyWord = null; // do tej zmiennej trzeba przypisać funkcje pobierania filmów z api, funkcja ma pobierać słowo kluczowe, a zwracać obiekt z filmami
+let getMoviesTodayTrends = null; // do tej zmiennej trzeba przypisać funkcje pobierania filmów z api, funkcja ma zwracać obiekt z filmami
+let getMovieByID = null; // do tej zmiennej trzeba przypisać funkcje pobierania filmu z api, funkcja ma pobierać id filmu a zwracać obiekt filmu
+
+let getQueuedMovies = null // do tej zmiennej trzeba przypisać funkcje pobierania filmów z Local Storage, funkcja ma zwracać obiekt z filmami
+let getWatchedMovies = null // do tej zmiennej trzeba przypisać funkcje pobierania filmów z Local Storage, funkcja ma zwracać obiekt  z filmami
 
 Loading.init({
   svgColor: PRIMARY_COLOR_HEX,
@@ -71,6 +85,12 @@ export default {
   notiflixTest,
   createMovieCardId,
   getMovieIdFromMovieCardElement,
+  getMovieByID,
+  getMoviesByKeyWord,
+  getMoviesTodayTrends,
+  getWatchedMovies,
+  getQueuedMovies,
+  ABOUT_WINDOW_BACKDROP_DIV_ELEMENT_ID,
   SEARCH_FORM_ELEMENT_ID,
   WATCHED_BUTTON_ELEMENT_ID,
   QUEUE_BUTTON_ELEMENT_ID,
@@ -80,5 +100,6 @@ export default {
   LOCAL_STORAGE_WATCH_KEY,
   NUM_OF_MOVIES_PER_PAGE,
   currentPage,
+  currentWebPage,
   renderMovieCardHTML,
 };

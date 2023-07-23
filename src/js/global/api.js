@@ -26,8 +26,10 @@ async function get(path) {
   const accept = 'application/json';
   const auth = ACCESS_TOKEN;
 
+  console.log(url);
+
   try {
-    return await axios({
+    const response = await axios({
       method: 'GET',
       url: url,
       headers: {
@@ -35,6 +37,10 @@ async function get(path) {
         authorization: 'Bearer ' + auth,
       },
     });
+
+    if (response.status === 200) {
+      return response.data;
+    }
   } catch (error) {
     if (error.response) {
       console.error(
@@ -59,9 +65,7 @@ async function get(path) {
       });
 
       if (response.ok) {
-        return {
-          data: await response.json(),
-        };
+        return await response.json();
       } else {
         throw new Error('Network response was not OK');
       }

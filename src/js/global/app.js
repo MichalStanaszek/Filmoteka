@@ -63,6 +63,8 @@ let getMoviesByKeyWord = null; // do tej zmiennej trzeba przypisać funkcje pobi
 let getMoviesTodayTrends = null; // do tej zmiennej trzeba przypisać funkcje pobierania filmów z api, funkcja ma zwracać obiekt z filmami
 let getMovieByID = null; // do tej zmiennej trzeba przypisać funkcje pobierania filmu z api, funkcja ma pobierać id filmu a zwracać obiekt filmu
 
+let onSearchFailed = null; // do tej zmiennej trzeba przypisać funkcje która będzie potrzebna aby wypisać błąd pod formularzem wyszukiwania filmów
+
 let getQueuedMovies = null // do tej zmiennej trzeba przypisać funkcje pobierania filmów z Local Storage, funkcja ma zwracać obiekt z filmami
 let getWatchedMovies = null // do tej zmiennej trzeba przypisać funkcje pobierania filmów z Local Storage, funkcja ma zwracać obiekt  z filmami
 
@@ -102,4 +104,5 @@ export default {
   currentPage,
   currentWebPage,
   renderMovieCardHTML,
+  onSearchFailed,
 };

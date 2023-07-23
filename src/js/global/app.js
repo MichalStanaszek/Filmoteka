@@ -52,7 +52,10 @@ let env = 'dev'; // or any other if we move to PRODUCTION stage
 let currentPage = 1;
 let currentWebPage = ""; // "home" or "library" ta zmienna jest ustawiana automatycznie przy starcie całej strony
 
-let renderMovieCardHTML = null;
+let renderMovieCardHTML = null; // do tej zmiennej trzeba przypisać funkcje renderowania karty filmu, funkcja ma pobierać obiekt filmu a zwracać html
+let getMoviesByKeyWord = null; // do tej zmiennej trzeba przypisać funkcje pobierania filmów z api
+let getMoviesTodayTrends = null; // do tej zmiennej trzeba przypisać funkcje pobierania filmów z api
+let getMovieByID = null; // do tej zmiennej trzeba przypisać funkcje pobierania filmu z api
 
 Loading.init({
   svgColor: PRIMARY_COLOR_HEX,

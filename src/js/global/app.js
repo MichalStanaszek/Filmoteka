@@ -50,6 +50,8 @@ const FONT_FAMILY = 'Roboto';
 
 let env = 'dev'; // or any other if we move to PRODUCTION stage
 let currentPage = 1;
+let currentWebPage = ""; // "home" or "library" ta zmienna jest ustawiana automatycznie przy starcie całej strony
+
 let renderMovieCardHTML = null;
 
 Loading.init({
@@ -80,5 +82,6 @@ export default {
   LOCAL_STORAGE_WATCH_KEY,
   NUM_OF_MOVIES_PER_PAGE,
   currentPage,
+  currentWebPage,
   renderMovieCardHTML,
 };

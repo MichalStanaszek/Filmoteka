@@ -90,6 +90,7 @@ export default {
   getMoviesTodayTrends,
   getWatchedMovies,
   getQueuedMovies,
+  ABOUT_WINDOW_BACKDROP_DIV_ELEMENT_ID,
   SEARCH_FORM_ELEMENT_ID,
   WATCHED_BUTTON_ELEMENT_ID,
   QUEUE_BUTTON_ELEMENT_ID,

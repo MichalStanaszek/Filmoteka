@@ -36,6 +36,7 @@ function getMovieIdFromMovieCardElement(moveCardElement) {
 const MOVIE_WINDOW_BACKDROP_DIV_ELEMENT_ID = 'movie-window-backdrop';
 const ABOUT_WINDOW_BACKDROP_DIV_ELEMENT_ID = 'about-window-backdrop';
 const SEARCH_FORM_ELEMENT_ID = 'search-form';
+const ABOUT_LINK_A_ELEMENT_ID = "about-us";
 
 const WATCHED_BUTTON_ELEMENT_ID = 'watched-button';
 const QUEUE_BUTTON_ELEMENT_ID = 'queue-button';

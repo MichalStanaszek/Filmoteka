@@ -12,13 +12,13 @@
 }
 
 .home {
-  background-image: url(../Image/header_gallery/header_desktop.png);
+  background-image: url(../Images/header/header_gallery/header_desktop.png);
   background-size: cover;
   height: 216px;
 }
 
 .library {
-  background: url(../Image/header_lib/header-lib_desktop.png);
+  background: url(../Images/header/header_lib/header-lib_desktop.png);
   background-size: cover;
   height: 216px;
 }
@@ -101,6 +101,7 @@ p {
   list-style: none;
   margin: 0;
   padding: 0;
+  color: white;
 }
 
 .link {

@@ -60,6 +60,7 @@ let currentWebPage = ""; // "home" or "library" ta zmienna jest ustawiana automa
  */
 
 let renderMovieCardHTML = null; // do tej zmiennej trzeba przypisać funkcje renderowania karty filmu, funkcja ma pobierać obiekt filmu a zwracać html
+let showMovieCards = null; // funkcja ma tworzyć liste kart filmów, pobierać ma tablice z filmami, a zwracać html listy filmów
 
 let getMoviesByKeyWord = null; // do tej zmiennej trzeba przypisać funkcje pobierania filmów z api, funkcja ma pobierać słowo kluczowe, a zwracać obiekt z filmami
 let getMoviesTodayTrends = null; // do tej zmiennej trzeba przypisać funkcje pobierania filmów z api, funkcja ma zwracać obiekt z filmami
@@ -109,5 +110,6 @@ export default {
   currentPage,
   currentWebPage,
   renderMovieCardHTML,
+  showMovieCards,
   onSearchFailed,
 };

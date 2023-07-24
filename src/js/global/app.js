@@ -33,6 +33,7 @@ function getMovieIdFromMovieCardElement(moveCardElement) {
   return movieId[1];
 }
 
+const MOVIE_WINDOW_BACKDROP_DIV_ELEMENT_ID = 'movie-window-backdrop';
 const ABOUT_WINDOW_BACKDROP_DIV_ELEMENT_ID = 'about-window-backdrop';
 const SEARCH_FORM_ELEMENT_ID = 'search-form';
 
@@ -63,6 +64,8 @@ let getMoviesByKeyWord = null; // do tej zmiennej trzeba przypisać funkcje pobi
 let getMoviesTodayTrends = null; // do tej zmiennej trzeba przypisać funkcje pobierania filmów z api, funkcja ma zwracać obiekt z filmami
 let getMovieByID = null; // do tej zmiennej trzeba przypisać funkcje pobierania filmu z api, funkcja ma pobierać id filmu a zwracać obiekt filmu
 
+let onSearchFailed = null; // do tej zmiennej trzeba przypisać funkcje która będzie potrzebna aby wypisać błąd pod formularzem wyszukiwania filmów
+
 let getQueuedMovies = null // do tej zmiennej trzeba przypisać funkcje pobierania filmów z Local Storage, funkcja ma zwracać obiekt z filmami
 let getWatchedMovies = null // do tej zmiennej trzeba przypisać funkcje pobierania filmów z Local Storage, funkcja ma zwracać obiekt  z filmami
 
@@ -90,6 +93,7 @@ export default {
   getMoviesTodayTrends,
   getWatchedMovies,
   getQueuedMovies,
+  MOVIE_WINDOW_BACKDROP_DIV_ELEMENT_ID,
   ABOUT_WINDOW_BACKDROP_DIV_ELEMENT_ID,
   SEARCH_FORM_ELEMENT_ID,
   WATCHED_BUTTON_ELEMENT_ID,
@@ -102,4 +106,5 @@ export default {
   currentPage,
   currentWebPage,
   renderMovieCardHTML,
+  onSearchFailed,
 };

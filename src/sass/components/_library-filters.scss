@@ -10,7 +10,7 @@
     border-radius: 5px;
     color: $whiteColor;
     background-color: rgba(0, 0, 0, 0);
-    cursor:auto;
+    cursor: pointer;
     transition: transform 0.2s;
     &:hover, &:focus {
         background-color: $primaryColor;

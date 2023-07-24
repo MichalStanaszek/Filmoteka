@@ -1,6 +1,26 @@
-<header class="header">
+<header class="header library">
   <div class="inner-container">
-    <p>LIBRARY HEADER</p>
+    <div class="header__wrap">
+<a class="link" href="./index.html">
+  <div class="logo logo-library">
+    <img class="logo-img" src="./image/header_gallery/film.png" alt="">
+  <p class="logo-text">Filomoteka</p>
+  </div>
+</a>
+    <nav class="nav">
+      <ul class="nav__list list">
+        <li class="nav__item">
+          <a href="./index.html" class="nav__link link">Home</a>
+        </li>
+        <li class="nav__item --active">
+          <a href="./library.html" class="nav__link link">My Library</a>
+        </li>
+      </ul>
+    </nav>
+    <div class="button-wrapper">
+      <button class="btn watched --active-btn" type="button">Watched</button>
+    <button class="btn queue" type="button">Queue</button>
+    </div>
     <include src="./partials/library-filters.html"></include>
   </div>
 </header>

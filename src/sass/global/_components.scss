@@ -1,6 +1,8 @@
 body {
   font-family: 'Roboto', sans-serif;
   position: relative;
+  background: $blackColor;
+  color: $whiteColor;
 }
 
 .inner-container {
@@ -20,7 +22,7 @@ body {
   }
 }
 
-.button{
+.button {
   text-align: center;
   width: 129.53px;
   height: 44px;
@@ -30,16 +32,20 @@ body {
   background-color: rgba(0, 0, 0, 0);
   cursor: pointer;
   transition: transform 0.2s;
-  &:hover, &:focus {
-      background-color: $primaryColor;
-      box-shadow: 0px 8px 43px 0px rgba($primaryColor, 0.5);
-      transform: scale(1.1);
-      border: 1px solid none;}
-@include tablet{
-  width:152px;
-}
-@include desktop{
-  width:147px;
-}
-}
 
+  &:hover,
+  &:focus {
+    background-color: $primaryColor;
+    box-shadow: 0px 8px 43px 0px rgba($primaryColor, 0.5);
+    transform: scale(1.1);
+    border: 1px solid none;
+  }
+
+  @include tablet {
+    width: 152px;
+  }
+
+  @include desktop {
+    width: 147px;
+  }
+}

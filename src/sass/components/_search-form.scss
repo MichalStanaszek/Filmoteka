@@ -1,0 +1,47 @@
+.FormSearch {
+  display: flex;
+  justify-content: center;
+  margin-top: 54px;
+
+  .FormInput {
+    border: 0;
+    background-color: inherit;
+    width: 280px;
+    height: 20px;
+    border-bottom: 1px solid white;
+    color: #fff;
+    font-size: 14px;
+    font-weight: 400;
+    font-family: var(--roboto);
+    outline: none;
+
+    &::placeholder {
+      color: #ffffff;
+    }
+  }
+
+  .IconLupa {
+    width: 12px;
+    height: 12px;
+    margin-left: -15px;
+    margin-top: 2px;
+    margin-bottom: 6px;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    background-color: inherit;
+    border: 0;
+  }
+}
+
+@media screen and (min-width: 768px) {
+  .FormInput {
+    width: 336px;
+  }
+}
+
+@media screen and (min-width: 1280px) {
+  .FormInput {
+    width: 394px;
+  }
+}

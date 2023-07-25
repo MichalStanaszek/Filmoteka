@@ -13,7 +13,6 @@
     font-weight: 400;
     font-family: var(--roboto);
     outline: none;
-    cursor: pointer;
 
     &::placeholder {
       color: #ffffff;
@@ -31,6 +30,7 @@
     align-items: center;
     background-color: inherit;
     border: 0;
+    cursor: pointer;
   }
 }
 

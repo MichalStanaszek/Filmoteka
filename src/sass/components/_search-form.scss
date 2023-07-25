@@ -1,7 +1,6 @@
 .FormSearch {
   display: flex;
   justify-content: center;
-  margin-top: 54px;
 
   .FormInput {
     border: 0;
@@ -14,6 +13,7 @@
     font-weight: 400;
     font-family: var(--roboto);
     outline: none;
+    cursor: pointer;
 
     &::placeholder {
       color: #ffffff;

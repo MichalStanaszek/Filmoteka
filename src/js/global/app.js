@@ -68,8 +68,8 @@ let getMovieByID = null; // do tej zmiennej trzeba przypisać funkcje pobierania
 
 let onSearchFailed = null; // do tej zmiennej trzeba przypisać funkcje która będzie potrzebna aby wypisać błąd pod formularzem wyszukiwania filmów
 
-let getQueuedMovies = null // do tej zmiennej trzeba przypisać funkcje pobierania filmów z Local Storage, funkcja ma zwracać obiekt z filmami
-let getWatchedMovies = null // do tej zmiennej trzeba przypisać funkcje pobierania filmów z Local Storage, funkcja ma zwracać obiekt  z filmami
+let getQueuedMovies = null; // do tej zmiennej trzeba przypisać funkcje pobierania filmów z Local Storage, funkcja ma zwracać obiekt z filmami
+let getWatchedMovies = null; // do tej zmiennej trzeba przypisać funkcje pobierania filmów z Local Storage, funkcja ma zwracać obiekt  z filmami
 
 Loading.init({
   svgColor: PRIMARY_COLOR_HEX,

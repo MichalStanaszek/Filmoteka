@@ -3,7 +3,7 @@
   background-position: center;
   background-repeat: no-repeat;
   background-size: cover;
-  background-image: url(../images/header/header_gallery/header_mobile.png);
+  background-image: url(../images/header/header_gallery/header-mobile.png);
 
   @media (min-device-pixel-ratio: 2),
     (-webkit-min-device-pixel-ratio: 2),
@@ -14,7 +14,7 @@
 
   @media screen and (min-width: 768px) {
     height: 219px;
-    background-image: url(../images/header/header_gallery/header_tablet.png);
+    background-image: url(../images/header/header_gallery/header-tablet.png);
 
     @media (min-device-pixel-ratio: 2),
       (-webkit-min-device-pixel-ratio: 2),
@@ -27,7 +27,7 @@
     max-width: 100%;
     height: 216px;
     margin: 0 auto;
-    background-image: url(../images/header/header_gallery/header_desktop.png);
+    background-image: url(../images/header/header_gallery/header-desktop.png);
 
     @media (min-device-pixel-ratio: 2),
       (-webkit-min-device-pixel-ratio: 2),
@@ -109,7 +109,7 @@
     width: 100%;
     height: 3px;
     border-radius: 1px;
-    background-color: red;
+    background-color: $LineColor;
   }
 }
 
@@ -118,7 +118,7 @@
   background-position: center;
   background-repeat: no-repeat;
   background-size: cover;
-  background-image: url(../images/header/header_lib/header-lib_mobile.png);
+  background-image: url(../images/header/header_lib/header-lib-mobile.png);
 
   @media (min-device-pixel-ratio: 2),
     (-webkit-min-device-pixel-ratio: 2),

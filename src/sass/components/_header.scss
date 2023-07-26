@@ -9,7 +9,7 @@
     (-webkit-min-device-pixel-ratio: 2),
     (min-resolution: 192dpi),
     (min-resolution: 2dppx) {
-    background-image: url(../images/header/header_gallery/header-mobile-2x.png);
+    background-image: url(../images/header/header-gallery/header-mobile-2x.png);
   }
 
   @media screen and (min-width: 768px) {
@@ -20,7 +20,7 @@
       (-webkit-min-device-pixel-ratio: 2),
       (min-resolution: 192dpi),
       (min-resolution: 2dppx) {
-      background-image: url(../images/header/header_gallery/header-tablet-2x.png);
+      background-image: url(../images/header/header-gallery/header-tablet-2x.png);
     }
   }
   @media screen and (min-width: 1280px) {
@@ -33,7 +33,7 @@
       (-webkit-min-device-pixel-ratio: 2),
       (min-resolution: 192dpi),
       (min-resolution: 2dppx) {
-      background-image: url(../images/header/header_gallery/header-desktop-2x.png);
+      background-image: url(../images/header/header-gallery/header-desktop-2x.png);
     }
   }
 }
@@ -124,18 +124,18 @@
     (-webkit-min-device-pixel-ratio: 2),
     (min-resolution: 192dpi),
     (min-resolution: 2dppx) {
-    background-image: url(../images/header/header_lib/header-lib-mobile-2x.png);
+    background-image: url(../images/header/header-lib/header-lib-mobile-2x.png);
   }
 
   @media screen and (min-width: 768px) {
     height: 219px;
-    background-image: url(../images/header/header_lib/header-lib-tablet.png);
+    background-image: url(../images/header/header-lib/header-lib-tablet.png);
 
     @media (min-device-pixel-ratio: 2),
       (-webkit-min-device-pixel-ratio: 2),
       (min-resolution: 192dpi),
       (min-resolution: 2dppx) {
-      background-image: url(../images/header/header_lib/header-lib-tablet-2x.png);
+      background-image: url(../images/header/header-lib/header-lib-tablet-2x.png);
     }
   }
 
@@ -143,13 +143,13 @@
     height: 216px;
     max-width: 1600px;
     margin: 0 auto;
-    background-image: url(../images/header/header_lib/header-lib-desktop.png);
+    background-image: url(../images/header/header-lib/header-lib-desktop.png);
 
     @media (min-device-pixel-ratio: 2),
       (-webkit-min-device-pixel-ratio: 2),
       (min-resolution: 192dpi),
       (min-resolution: 2dppx) {
-      background-image: url(../images/header/header_lib/header-lib-desktop-2x.png);
+      background-image: url(../images/header/header-lib/header-lib-desktop-2x.png);
     }
   }
 }

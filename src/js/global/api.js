@@ -78,8 +78,13 @@ async function get(path) {
   }
 }
 
+async function getGenres() {
+  return await get('genre/movie/list');
+}
+
 authenticate();
 
 export default {
   get,
+  getGenres,
 };

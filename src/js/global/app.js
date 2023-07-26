@@ -82,7 +82,6 @@ Notify.init({
 
 notiflixTest();
 
-
 export default {
   api,
   Loading,

@@ -2,12 +2,12 @@ import api from './api.js';
 import { Loading, Notify } from 'notiflix';
 
 async function apiTest(scriptFilename) {
-  if (env == 'dev') {
+ /*  if (env == 'dev') {
     const res = await api.get('search/keyword?query=monster');
 
     console.log(scriptFilename + ' api test:');
     console.log(res);
-  }
+  } */
 }
 
 async function notiflixTest() {

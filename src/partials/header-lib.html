@@ -1,26 +1,24 @@
 <header class="header library">
   <div class="inner-container">
-    <div class="header__wrap">
-      <a class="link" href="./index.html">
-        <div class="logo logo-library">
-          <img
-            class="logo-img"
-            src="/src/images/header/header-gallery/film.png"
-            alt=""
-          />
-          <p class="logo-text">Filomoteka</p>
-        </div>
+    <div class="header-lib__container">
+      <a class="header__logo" href="./index.html">
+        <svg class="header__icon" width="24" height="24">
+          <use
+              href="./images/header/header_gallery/symbol-defs.svg#icon-film"
+            ></use>
+        </svg>
+        <span class="header__text">Filmoteka</span>
       </a>
-      <nav class="nav">
-        <ul class="nav__list list">
-          <li class="nav__item">
-            <a href="./index.html" class="nav__link link">Home</a>
-          </li>
-          <li class="nav__item --active">
-            <a href="./library.html" class="nav__link link">My Library</a>
-          </li>
-        </ul>
-      </nav>
+      <ul class="header__list">
+        <li class="header__item">
+          <a class="header__link " href="./index.html">home</a>
+        </li>
+        <li class="header__item">
+          <a class="header__link header__link--current" href="./library.html">my library</a>
+        </li>
+      </ul>
+    </nav>
+</div>
     </div>
     <include src="./partials/library-filters.html"></include>
   </div>

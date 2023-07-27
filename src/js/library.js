@@ -1,43 +1,36 @@
 import app from './global/app';
 
 app.apiTest('library.js');
-
-// Zmienne do symulacji danych w Local Storage
-const localStorageData = {
-  watched: ['poster1.jpg', 'poster2.jpg', 'poster3.jpg'],
-  queue: ['poster4.jpg', 'poster5.jpg', 'poster6.jpg'],
+// Funkcje do odczytu danych z Local Storage
+const getFromStorage = key => {
+  try {
+    const serialisedState = localStorage.getItem(key);
+    return serialisedState === null ? undefined : JSON.parse(serialisedState);
+  } catch (error) {
+    console.log(error.messege);
+  }
 };
 
-// Funkcja symulująca odczyt z Local Storage, w przyszłości np id
-function getFromStorage(key) {
-  return localStorageData[key] || [];
-}
+app.getWatchedMovies = function () {
+  return getFromStorage(app.LOCAL_STORAGE_WATCH_KEY) || [];
+};
 
-// Stałe do identyfikacji kluczy w Local Storage
-const LOCAL_STORAGE_WATCH_KEY = 'watched';
-const LOCAL_STORAGE_QUEUE_KEY = 'queue';
-
-// Funkcje do odczytu danych z Local Storage
-function getWatchedMovies() {
-  return getFromStorage(LOCAL_STORAGE_WATCH_KEY) || [];
-}
-
-function getQueuedMovies() {
-  return getFromStorage(LOCAL_STORAGE_QUEUE_KEY) || [];
-}
+app.getQueuedMovies = function () {
+  return getFromStorage(app.LOCAL_STORAGE_QUEUE_KEY) || [];
+};
 
 // Funkcje do zapisu danych do Local Storage
 function setWatchedMovies(array) {
-  localStorageData[LOCAL_STORAGE_WATCH_KEY] = array;
+  localStorage.setItem(app.LOCAL_STORAGE_WATCH_KEY, JSON.stringify(array));
 }
 
 function setQueuedMovies(array) {
-  localStorageData[LOCAL_STORAGE_QUEUE_KEY] = array;
+  localStorage.setItem(app.LOCAL_STORAGE_QUEUE_KEY, JSON.stringify(array));
 }
 
 // Wywołujemy funkcje do odczytu danych i przechowujemy je w zmiennych
-const watchedData = getWatchedMovies();
-const queueData = getQueuedMovies();
+const watchedData = app.getWatchedMovies();
+const queueData = app.getQueuedMovies();
 
 // Możemy teraz korzystać z danych w zmiennych watchedData i queueData
 console.log('Oglądane filmy:', watchedData);
@@ -60,16 +53,16 @@ console.log('Filmy do obejrzenia:', queueData);
 //   }
 // }
 
-// Funkcja do wyświetlania oglądanych filmów
+//  Funkcja do wyświetlania oglądanych filmów
 function showWatched() {
-  const watched = getWatchedMovies(); // Pobieramy dane o oglądanych filmach z Local Storage
+  const watched = app.getWatchedMovies(); // Pobieramy dane o oglądanych filmach z Local Storage
   // displayWatchedMovies(watched); // Wyświetlamy listę oglądanych filmów na stronie
 }
 
 // Funkcja do wyświetlania filmów do obejrzenia
 function showQueue() {
-  const queue = getQueuedMovies(); // Pobieramy dane o filmach do obejrzenia z Local Storage
-  displayWatchedMovies(queue); // Wyświetlamy listę filmów do obejrzenia na stronie
+  const queue = app.getQueuedMovies(); // Pobieramy dane o filmach do obejrzenia z Local Storage
+  // displayWatchedMovies(queue); // Wyświetlamy listę filmów do obejrzenia na stronie
 }
 
 // Przypisujemy event listenery do przycisków

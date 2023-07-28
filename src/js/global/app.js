@@ -101,6 +101,7 @@ export default {
   NUM_OF_MOVIES_PER_PAGE,
   currentPage,
   currentWebPage,
+  currentKeyword,
   renderMovieCardHTML,
   showMovieCards,
   onSearchFailed,

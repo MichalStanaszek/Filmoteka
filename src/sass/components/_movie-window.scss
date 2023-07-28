@@ -24,14 +24,29 @@
   justify-content: space-between;
   padding: 0 20px;
   max-width: 264px;
-  &__list {
+  font-weight: 500;
+  &__list,
+  &__result {
     list-style-type: none;
-    text-decoration: none;
     color: rgba(140, 140, 140, 1);
     margin-bottom: 8px;
   }
   &__list:last-child {
     margin-bottom: 0px;
+  }
+  &__result {
+    color: black;
+  }
+  &--color {
+    padding: 1px 10px;
+    border-radius: 5px;
+    background: $bcgIcon;
+    color: $whiteColor;
+  }
+  &--color2 {
+    padding: 1px 4px;
+    border-radius: 5px;
+    background: #f7f7f7;
   }
 }
 
@@ -58,6 +73,7 @@
     &:focus {
       background: $bcgIcon;
       color: $whiteColor;
+      border: none;
     }
   }
 }
@@ -112,11 +128,39 @@
   .movie-window {
     width: 806px;
     height: 558px;
+    &--flex {
+      display: flex;
+    }
   }
 
   .dummy {
     width: 375px;
     height: 478px;
-    border-radius: 5px;
+    margin: 40px 16px 40px 12px;
+    &__title {
+      margin: 40px 0 20px;
+    }
+  }
+
+  .stats {
+    padding: 0;
+  }
+
+  .description {
+    margin: 20px 0;
+    max-width: 391px;
+    &--header {
+      margin-bottom: 8px;
+    }
+  }
+
+  .modal-buttons {
+    display: block;
+    margin-top: 35px;
+
+    .button {
+      width: 136px;
+      margin-right: 15px;
+    }
   }
 }

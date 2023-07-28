@@ -42,6 +42,3 @@ app.renderMovieCardHTML(447277).then(movieCard=> {
   console.log(movieCard);
 })
 
-
-
-

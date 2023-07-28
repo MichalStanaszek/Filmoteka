@@ -1,11 +1,22 @@
 import app from './global/app';
 
-app.apiTest('gallery.js');
-app.getMoviesTodayTrends = async function()  { 
- const trendMovies = await app.api.get('trending/movie/day')
- console.log(trendMovies);
- return trendMovies; 
+app.showMovieCards = function (moviesArray) {
+  if (app.renderMovieCardHTML) {
+    const moviesCardList = moviesArray.map(movie => {
+      return app.renderMovieCardHTML(movie);
+    });
+    return moviesCardList.join('');
+  } else {
+    return '';
   }
-app.getMoviesTodayTrends();
+};
 
- 
+const gallery = document.getElementById('gallery');
+gallery.innerHTML = '';
+const moviesCardList = app.showMovieCards(filteredMovies);
+gallery.insertAdjacentHTML('beforeend', moviesCardList);
+
+
+
+
+

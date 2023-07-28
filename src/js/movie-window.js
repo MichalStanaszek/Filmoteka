@@ -1,7 +1,5 @@
 import app from './global/app';
 
-app.apiTest('movie-window.js');
-
 const modal = document.querySelectorAll(
   '.' + app.MOVIE_CARD_ELEMENTS_CSS_CLASS
 );

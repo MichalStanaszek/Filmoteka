@@ -1,10 +1,6 @@
 import api from './api.js';
 import { Loading, Notify } from 'notiflix';
 
-async function apiTest(scriptFilename) {
-
-}
-
 async function notiflixTest() {
   if (env == 'dev') {
     Loading.circle();
@@ -82,7 +78,6 @@ export default {
   api,
   Loading,
   Notify,
-  apiTest,
   notiflixTest,
   createMovieCardId,
   getMovieIdFromMovieCardElement,

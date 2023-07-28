@@ -1,6 +1,5 @@
 import app from './global/app';
 
-app.apiTest('library.js');
 // Funkcje do odczytu danych z Local Storage
 const getFromStorage = key => {
   try {

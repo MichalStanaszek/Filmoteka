@@ -2,12 +2,7 @@ import api from './api.js';
 import { Loading, Notify } from 'notiflix';
 
 async function apiTest(scriptFilename) {
- /*  if (env == 'dev') {
-    const res = await api.get('search/keyword?query=monster');
 
-    console.log(scriptFilename + ' api test:');
-    console.log(res);
-  } */
 }
 
 async function notiflixTest() {
@@ -37,6 +32,7 @@ const MOVIE_WINDOW_BACKDROP_DIV_ELEMENT_ID = 'movie-window-backdrop';
 const ABOUT_WINDOW_BACKDROP_DIV_ELEMENT_ID = 'about-window-backdrop';
 const SEARCH_FORM_ELEMENT_ID = 'search-form';
 const ABOUT_LINK_A_ELEMENT_ID = "about-us";
+const ABOUT_WINDOW_CLOSE_BTN_ELEMENT_ID = "about-close-button";
 
 const WATCHED_BUTTON_ELEMENT_ID = 'watched-button';
 const QUEUE_BUTTON_ELEMENT_ID = 'queue-button';
@@ -59,11 +55,15 @@ let currentWebPage = ""; // "home" or "library" ta zmienna jest ustawiana automa
  UWAGA! Zanim użyjemy funkcji którejś z poniższych sprawdzamy za pomocą if czy ta funkcja już istnieje
  */
 
-let renderMovieCardHTML = null; // do tej zmiennej trzeba przypisać funkcje renderowania karty filmu, funkcja ma pobierać obiekt filmu a zwracać html
+let renderMovieCardHTML = null; // do tej zmiennej trzeba przypisać funkcje renderowania karty filmu, funkcja ma pobierać id filmu a zwracać html
 let showMovieCards = null; // funkcja ma tworzyć liste kart filmów, pobierać ma tablice z filmami, a zwracać html listy filmów
 
 let getMoviesByKeyWord = null; // do tej zmiennej trzeba przypisać funkcje pobierania filmów z api, funkcja ma pobierać słowo kluczowe, a zwracać obiekt z filmami
-let getMoviesTodayTrends = null; // do tej zmiennej trzeba przypisać funkcje pobierania filmów z api, funkcja ma zwracać obiekt z filmami
+const getMoviesTodayTrends = async function () {
+  const trendMovies = await app.api.get('trending/movie/day');
+  console.log(trendMovies);
+  return trendMovies;
+};
 let getMovieByID = null; // do tej zmiennej trzeba przypisać funkcje pobierania filmu z api, funkcja ma pobierać id filmu a zwracać obiekt filmu
 
 let onSearchFailed = null; // do tej zmiennej trzeba przypisać funkcje która będzie potrzebna aby wypisać błąd pod formularzem wyszukiwania filmów
@@ -97,6 +97,7 @@ export default {
   getQueuedMovies,
   MOVIE_WINDOW_BACKDROP_DIV_ELEMENT_ID,
   ABOUT_WINDOW_BACKDROP_DIV_ELEMENT_ID,
+  ABOUT_WINDOW_CLOSE_BTN_ELEMENT_ID,
   ABOUT_LINK_A_ELEMENT_ID,
   SEARCH_FORM_ELEMENT_ID,
   WATCHED_BUTTON_ELEMENT_ID,

@@ -2,12 +2,7 @@ import api from './api.js';
 import { Loading, Notify } from 'notiflix';
 
 async function apiTest(scriptFilename) {
- if (env == 'dev') {
-    const res = await api.get('search/keyword?query=monster');
 
-    console.log(scriptFilename + ' api test:');
-    console.log(res);
-  }
 }
 
 async function notiflixTest() {
@@ -64,7 +59,11 @@ let renderMovieCardHTML = null; // do tej zmiennej trzeba przypisać funkcje ren
 let showMovieCards = null; // funkcja ma tworzyć liste kart filmów, pobierać ma tablice z filmami, a zwracać html listy filmów
 
 let getMoviesByKeyWord = null; // do tej zmiennej trzeba przypisać funkcje pobierania filmów z api, funkcja ma pobierać słowo kluczowe, a zwracać obiekt z filmami
-let getMoviesTodayTrends = null; // do tej zmiennej trzeba przypisać funkcje pobierania filmów z api, funkcja ma zwracać obiekt z filmami
+const getMoviesTodayTrends = async function () {
+  const trendMovies = await app.api.get('trending/movie/day');
+  console.log(trendMovies);
+  return trendMovies;
+};
 let getMovieByID = null; // do tej zmiennej trzeba przypisać funkcje pobierania filmu z api, funkcja ma pobierać id filmu a zwracać obiekt filmu
 
 let onSearchFailed = null; // do tej zmiennej trzeba przypisać funkcje która będzie potrzebna aby wypisać błąd pod formularzem wyszukiwania filmów

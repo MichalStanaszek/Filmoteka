@@ -1,7 +1,5 @@
 import app from './global/app';
 
-app.apiTest('search-form.js');
-
 const formError = document.querySelector('.FormError');
 const formInput = document.querySelector('.FormInput');
 const formSearch = document.querySelector('.FormSearch');

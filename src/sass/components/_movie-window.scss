@@ -1,0 +1,166 @@
+.movie-window {
+  color: black;
+  width: 280px;
+  height: 940px;
+  font-size: 12px;
+  border: 1px solid #000;
+  background: #fff;
+  box-shadow: 0px 4px 4px 0px rgba(0, 0, 0, 0.25);
+}
+
+.dummy {
+  width: 240px;
+  height: 357px;
+  display: block;
+  margin: auto;
+  border-radius: 5px;
+  &__title {
+    margin: 20px;
+  }
+}
+
+.stats {
+  display: flex;
+  justify-content: space-between;
+  padding: 0 20px;
+  max-width: 264px;
+  font-weight: 500;
+  &__list,
+  &__result {
+    list-style-type: none;
+    color: rgba(140, 140, 140, 1);
+    margin-bottom: 8px;
+  }
+  &__list:last-child {
+    margin-bottom: 0px;
+  }
+  &__result {
+    color: black;
+  }
+  &--color {
+    padding: 1px 10px;
+    border-radius: 5px;
+    background: $bcgIcon;
+    color: $whiteColor;
+  }
+  &--color2 {
+    padding: 1px 4px;
+    border-radius: 5px;
+    background: #f7f7f7;
+  }
+}
+
+.description {
+  font-weight: 500;
+  margin: 20px;
+  line-height: 20px;
+  max-width: 274px;
+  &--header {
+    margin-bottom: 8px;
+  }
+}
+
+.modal-buttons {
+  display: flex;
+  justify-content: space-evenly;
+
+  .button {
+    border: 1px solid $blackColor;
+    background-color: $whiteColor;
+    color: $blackColor;
+    width: 110px;
+    &:hover,
+    &:focus {
+      background: $bcgIcon;
+      color: $whiteColor;
+      border: none;
+    }
+  }
+}
+
+/* The Close Button */
+.close {
+  width: 30px;
+  height: 30px;
+  margin: 8px;
+  text-align: center;
+  color: #aaa;
+  float: right;
+  font-size: 28px;
+  font-weight: bold;
+
+  &:hover,
+  &:focus {
+    color: black;
+    text-decoration: none;
+    cursor: pointer;
+  }
+}
+
+// TABLET
+@media screen and (min-width: 481px) and (max-width: 768px) {
+  .movie-window {
+    width: 704px;
+    height: 552px;
+    &--flex {
+      display: flex;
+    }
+  }
+
+  .dummy {
+    width: 264px;
+    height: 373.551px;
+    margin: 36px;
+    &__title {
+      margin-top: 36px;
+    }
+  }
+
+  .modal-buttons {
+    margin-top: 35px;
+    .button {
+      width: 125px;
+    }
+  }
+}
+// DESKTOP
+@media screen and (min-width: 769px) {
+  .movie-window {
+    width: 806px;
+    height: 558px;
+    &--flex {
+      display: flex;
+    }
+  }
+
+  .dummy {
+    width: 375px;
+    height: 478px;
+    margin: 40px 16px 40px 12px;
+    &__title {
+      margin: 40px 0 20px;
+    }
+  }
+
+  .stats {
+    padding: 0;
+  }
+
+  .description {
+    margin: 20px 0;
+    max-width: 391px;
+    &--header {
+      margin-bottom: 8px;
+    }
+  }
+
+  .modal-buttons {
+    display: block;
+    margin-top: 35px;
+
+    .button {
+      width: 136px;
+      margin-right: 15px;
+    }
+  }
+}

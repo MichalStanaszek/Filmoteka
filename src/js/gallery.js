@@ -1,9 +1,14 @@
 import app from './global/app';
 
-const galleryULElement = document.getElementById(app.MOVIE_CARDS_PARENT_ELEMENT_ID);
-
 app.getMoviesTodayTrends = async function (page = app.currentPage) {
-  return await app.api.get('trending/movie/day');
+  const galleryULElement = document.getElementById(
+    app.MOVIE_CARDS_PARENT_ELEMENT_ID
+  );
+
+  const movies = await app.api.get('trending/movie/day');
+  const movieCards = await app.showMovieCards(movies);
+
+  galleryULElement.insertAdjacentHTML('afterbegin', movieCards);
 };
 
 app.renderMovieCardHTML = async function (movieId) {
@@ -45,11 +50,4 @@ app.showMovieCards = async function (moviesArray) {
   return html;
 };
 
-app
-  .getMoviesTodayTrends()
-  .then(movies => {
-    return app.showMovieCards(movies);
-  })
-  .then(movieCards => {
-    galleryULElement.insertAdjacentHTML('afterbegin', movieCards);
-  });
+app.getMoviesTodayTrends();

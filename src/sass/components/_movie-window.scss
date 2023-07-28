@@ -6,9 +6,6 @@
   border: 1px solid #000;
   background: #fff;
   box-shadow: 0px 4px 4px 0px rgba(0, 0, 0, 0.25);
-  .button {
-    background-color: rgba(0, 0, 0, 1);
-  }
 }
 
 .dummy {
@@ -24,19 +21,44 @@
 
 .stats {
   display: flex;
-  justify-content: space-around;
+  justify-content: space-between;
+  padding: 0 20px;
+  max-width: 264px;
   &__list {
     list-style-type: none;
     text-decoration: none;
     color: rgba(140, 140, 140, 1);
+    margin-bottom: 8px;
+  }
+  &__list:last-child {
+    margin-bottom: 0px;
   }
 }
 
 .description {
   font-weight: 500;
-  padding: 20px;
+  margin: 20px;
+  line-height: 20px;
+  max-width: 274px;
   &--header {
     margin-bottom: 8px;
+  }
+}
+
+.modal-buttons {
+  display: flex;
+  justify-content: space-evenly;
+
+  .button {
+    border: 1px solid $blackColor;
+    background-color: $whiteColor;
+    color: $blackColor;
+    width: 110px;
+    &:hover,
+    &:focus {
+      background: $bcgIcon;
+      color: $whiteColor;
+    }
   }
 }
 
@@ -64,11 +86,25 @@
   .movie-window {
     width: 704px;
     height: 552px;
+    &--flex {
+      display: flex;
+    }
   }
 
   .dummy {
     width: 264px;
     height: 373.551px;
+    margin: 36px;
+    &__title {
+      margin-top: 36px;
+    }
+  }
+
+  .modal-buttons {
+    margin-top: 35px;
+    .button {
+      width: 125px;
+    }
   }
 }
 // DESKTOP

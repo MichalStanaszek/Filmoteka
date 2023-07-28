@@ -2,7 +2,7 @@ import app from './global/app';
 
 const galleryULElement = document.getElementById(app.MOVIE_CARDS_PARENT_ELEMENT_ID);
 
-app.getMoviesTodayTrends = async function () {
+app.getMoviesTodayTrends = async function (page = app.currentPage) {
   return await app.api.get('trending/movie/day');
 };
 

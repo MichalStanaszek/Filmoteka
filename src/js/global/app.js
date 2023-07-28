@@ -46,6 +46,7 @@ const FONT_FAMILY = 'Roboto';
 let env = 'dev'; // or any other if we move to PRODUCTION stage
 let currentPage = 1;
 let currentWebPage = ""; // "home" or "library" ta zmienna jest ustawiana automatycznie przy starcie całej strony
+let currentKeyword = "";
 
 /*
  UWAGA! Zanim użyjemy funkcji którejś z poniższych sprawdzamy za pomocą if czy ta funkcja już istnieje

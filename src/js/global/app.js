@@ -44,7 +44,6 @@ const QUEUE_BUTTON_ELEMENT_ID = 'queue-button';
 
 const MOVIE_CARDS_PARENT_ELEMENT_ID = 'gallery';
 const MOVIE_CARD_ELEMENTS_CSS_CLASS = 'movie-card';
-const LIBRARY_MOVIE_CARDS_PARENT_ELEMENT_ID = "library";
 
 const LOCAL_STORAGE_QUEUE_KEY = 'queue_movies';
 const LOCAL_STORAGE_WATCH_KEY = 'watch_movies';
@@ -61,7 +60,7 @@ let currentWebPage = ""; // "home" or "library" ta zmienna jest ustawiana automa
  UWAGA! Zanim użyjemy funkcji którejś z poniższych sprawdzamy za pomocą if czy ta funkcja już istnieje
  */
 
-let renderMovieCardHTML = null; // do tej zmiennej trzeba przypisać funkcje renderowania karty filmu, funkcja ma pobierać obiekt filmu a zwracać html
+let renderMovieCardHTML = null; // do tej zmiennej trzeba przypisać funkcje renderowania karty filmu, funkcja ma pobierać id filmu a zwracać html
 let showMovieCards = null; // funkcja ma tworzyć liste kart filmów, pobierać ma tablice z filmami, a zwracać html listy filmów
 
 let getMoviesByKeyWord = null; // do tej zmiennej trzeba przypisać funkcje pobierania filmów z api, funkcja ma pobierać słowo kluczowe, a zwracać obiekt z filmami
@@ -105,7 +104,6 @@ export default {
   WATCHED_BUTTON_ELEMENT_ID,
   QUEUE_BUTTON_ELEMENT_ID,
   MOVIE_CARDS_PARENT_ELEMENT_ID,
-  LIBRARY_MOVIE_CARDS_PARENT_ELEMENT_ID,
   MOVIE_CARD_ELEMENTS_CSS_CLASS,
   LOCAL_STORAGE_QUEUE_KEY,
   LOCAL_STORAGE_WATCH_KEY,

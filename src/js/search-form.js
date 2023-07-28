@@ -10,7 +10,7 @@ formError.style.display = 'none';
 
 onSearchFailed();
 
-function onSearchFailed() {
+app.onSearchFailed = function onSearchFailed() {
   formSearch.addEventListener('submit', event => {
     event.preventDefault();
 
@@ -22,4 +22,4 @@ function onSearchFailed() {
 
     return;
   });
-}
+};

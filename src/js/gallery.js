@@ -5,7 +5,7 @@ app.getMoviesTodayTrends = async function (page = app.currentPage) {
     app.MOVIE_CARDS_PARENT_ELEMENT_ID
   );
 
-  const movies = await app.api.get('trending/movie/day');
+  const movies = await app.api.get('trending/movie/day', { page });
   const movieCards = await app.showMovieCards(movies);
 
   galleryULElement.insertAdjacentHTML('afterbegin', movieCards);
@@ -51,3 +51,4 @@ app.showMovieCards = async function (moviesArray) {
 };
 
 app.getMoviesTodayTrends();
+

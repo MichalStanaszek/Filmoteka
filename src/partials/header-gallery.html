@@ -1,6 +1,29 @@
-<header class="header">
+<header class="header home" id="header">
   <div class="inner-container">
-    <p>SEARCH HEADER</p>
+    <div class="header__container">
+      <nav class="header__nav">
+        <a class="header__logo" href="./index.html">
+          <svg class="header__icon" width="24" height="24">
+            <use
+              href="/src/images/header/header-gallery/symbol-defs.svg#icon-film"
+            ></use>
+          </svg>
+          <span class="header__text">Filmoteka</span>
+        </a>
+        <ul class="header__list">
+          <li class="header__item">
+            <a href="./index.html" class="header__link header__link--current"
+              >Home</a
+            >
+          </li>
+          <li class="header__item">
+            <a href="./library.html" class="header__link">My library</a>
+          </li>
+        </ul>
+      </nav>
+    </div>
     <include src="./partials/search-form.html"></include>
   </div>
+  <!-- button do usunięcia gdy będzie karta filmu -->
+  <button id="btn" type="button">modal-test</button>
 </header>

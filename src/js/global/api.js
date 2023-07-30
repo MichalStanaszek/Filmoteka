@@ -27,7 +27,7 @@ async function get(path) {
   const auth = ACCESS_TOKEN;
 
   try {
-    return await axios({
+    const response = await axios({
       method: 'GET',
       url: url,
       headers: {
@@ -35,6 +35,10 @@ async function get(path) {
         authorization: 'Bearer ' + auth,
       },
     });
+
+    if (response.status === 200) {
+      return response.data;
+    }
   } catch (error) {
     if (error.response) {
       console.error(
@@ -59,9 +63,7 @@ async function get(path) {
       });
 
       if (response.ok) {
-        return {
-          data: await response.json(),
-        };
+        return await response.json();
       } else {
         throw new Error('Network response was not OK');
       }
@@ -74,8 +76,14 @@ async function get(path) {
   }
 }
 
+async function getGenres() {
+  return await get('genre/movie/list');
+}
+
 authenticate();
 
 export default {
+  API_URL,
   get,
+  getGenres,
 };

@@ -39,4 +39,4 @@ app.getMoviesByKeyWord = async function (keyword) {
 //   }
 // };
 
-app.getMoviesByKeyWord('keyword');
+// app.getMoviesByKeyWord('keyword');

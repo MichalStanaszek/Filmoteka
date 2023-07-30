@@ -5,12 +5,16 @@ app.getMoviesTodayTrends = async function (page = app.currentPage) {
     app.MOVIE_CARDS_PARENT_ELEMENT_ID
   );
 
+<<<<<<< Updated upstream
   const movies = await app.api.get('trending/movie/day', { page });
+=======
+  const movies = await app.api.get('movies/today/trending?page=${page}');
+>>>>>>> Stashed changes
   const movieCards = await app.showMovieCards(movies);
 
   galleryULElement.insertAdjacentHTML('afterbegin', movieCards);
 };
-
+app.getMoviesTodayTrends(2);
 app.renderMovieCardHTML = async function (movieId) {
   const movieObject = await app.api.get('movie/' + movieId);
   const poster = movieObject.poster_path;

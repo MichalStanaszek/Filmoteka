@@ -1,19 +1,6 @@
 import api from './api.js';
 import { Loading, Notify } from 'notiflix';
 
-async function notiflixTest() {
-  if (env == 'dev') {
-    Loading.circle();
-
-    setTimeout(function () {
-      Notify.success('Notiflix Test');
-      console.log('app.js');
-
-      Loading.remove();
-    }, 2000);
-  }
-}
-
 function createMovieCardId(movieId) {
   return 'movie-' + movieId;
 }
@@ -73,13 +60,9 @@ Notify.init({
   fontFamily: FONT_FAMILY,
 });
 
-notiflixTest();
-
 export default {
   api,
   Loading,
-  Notify,
-  notiflixTest,
   createMovieCardId,
   getMovieIdFromMovieCardElement,
   getMovieByID,

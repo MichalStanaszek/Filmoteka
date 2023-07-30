@@ -1,4 +1,5 @@
 import app from './global/app';
+
 app.getMoviesTodayTrends = async function (page = app.currentPage) {
   const galleryULElement = document.getElementById(
     app.MOVIE_CARDS_PARENT_ELEMENT_ID
@@ -9,10 +10,11 @@ app.getMoviesTodayTrends = async function (page = app.currentPage) {
 
   galleryULElement.insertAdjacentHTML('afterbegin', movieCards);
 };
+
 app.renderMovieCardHTML = async function (movieId) {
   const movieObject = await app.api.get('movie/' + movieId);
-   const poster = movieObject.poster_path;
-   const posterUrl = 'https://image.tmdb.org/t/p/w500';
+  const poster = movieObject.poster_path;
+  const posterUrl = 'https://image.tmdb.org/t/p/w500';
   const movieGenres = [];
 
   for (const genre of movieObject.genres) {
@@ -47,4 +49,3 @@ app.showMovieCards = async function (moviesArray) {
 };
 
 app.getMoviesTodayTrends();
-

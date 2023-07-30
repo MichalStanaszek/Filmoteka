@@ -1,4 +1,5 @@
 import app from './global/app';
+
 const openAboutWindow = document.getElementById(app.ABOUT_LINK_A_ELEMENT_ID);
 const closeAboutWindow = document.getElementById('about-window-close');
 const backdropAboutWindow = document.getElementById(app.ABOUT_WINDOW_BACKDROP_DIV_ELEMENT_ID);

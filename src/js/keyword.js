@@ -17,6 +17,7 @@ app.getMoviesByKeyWord = async function (keyword) {
   const keywordData = await app.api.get(
     `search/keyword?query=${keyword}&page=${app.currentPage}`
   );
+  Loading.remove();
   if (keywordData.total_results > 0) {
     return keywordData;
   } else {
@@ -25,9 +26,6 @@ app.getMoviesByKeyWord = async function (keyword) {
   }
 
   Notify.success('Notiflix Test');
-  console.log('app.js');
-
-  Loading.remove();
 };
 //   app.currentKeyword = keyword;
 

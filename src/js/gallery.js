@@ -14,7 +14,6 @@ app.getMoviesTodayTrends = async function (page = app.currentPage) {
 
   galleryULElement.insertAdjacentHTML('afterbegin', movieCards);
 };
-app.getMoviesTodayTrends(2);
 app.renderMovieCardHTML = async function (movieId) {
   const movieObject = await app.api.get('movie/' + movieId);
   const poster = movieObject.poster_path;

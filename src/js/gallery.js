@@ -13,13 +13,14 @@ app.getMoviesTodayTrends = async function (page = app.currentPage) {
 
 app.renderMovieCardHTML = async function (movieId) {
   const movieObject = await app.api.get('movie/' + movieId);
-  const poster = movieObject.poster_path;
+   const poster = movieObject.poster_path;
+   const posterUrl = 'https://image.tmdb.org/t/p/w500';
   const movieGenres = [];
 
   for (const genre of movieObject.genres) {
     movieGenres.push(genre.name);
   }
-
+  const movieYear = movieObject.release_date.split('-')[0];
   const title = movieObject.original_title;
   const votes = movieObject.vote_average;
   const popularity = movieObject.popularity;
@@ -28,14 +29,11 @@ app.renderMovieCardHTML = async function (movieId) {
   return `
    <li class = "movie-card">
        <div class="movie-thumb">
-        <img class="movie-image" src="${poster}" alt="${movieGenres}" loading="lazy" />
+        <img class="movie-image" src="${posterUrl}${poster}" alt="Poster image" loading="lazy" />
        </div>
       <div class="movie-info">
         <p class="movie-name">${title}</p>
-        <p class="movie-descr"> ${about} </p>
-        <p class="movie-genres">${movieGenres}</p>
-        <p class="movie-votes">${votes}</p>
-        <p class="movie-popularity">${popularity}</p>
+        <p class="movie-genres">${movieGenres} | ${movieYear}</p>
       </div>
     </li>`;
 };

@@ -4,11 +4,12 @@ app.getMoviesTodayTrends = async function (page = app.currentPage) {
   const galleryULElement = document.getElementById(
     app.MOVIE_CARDS_PARENT_ELEMENT_ID
   );
-
+app.Loading.circle();
   const movies = await app.api.get(`movie/popular?page=${page}`);
   const movieCards = await app.showMovieCards(movies);
 
   galleryULElement.insertAdjacentHTML('afterbegin', movieCards);
+  app.Loading.remove();
 };
 
 app.renderMovieCardHTML = async function (movieId) {
@@ -47,5 +48,5 @@ app.showMovieCards = async function (moviesArray) {
 
   return html;
 };
-
 app.getMoviesTodayTrends();
+

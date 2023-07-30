@@ -35,14 +35,31 @@
   }
 }
 
+.FormError {
+  color: #ff001b;
+  font-family: var(--roboto);
+  font-size: 14px;
+  font-weight: 400;
+  margin-top: 16px;
+  text-align: center;
+}
+
 @media screen and (min-width: 768px) {
   .FormInput {
     width: 336px;
+  }
+
+  .FormError {
+    margin-top: 20px;
   }
 }
 
 @media screen and (min-width: 1280px) {
   .FormInput {
     width: 394px;
+  }
+
+  .FormError {
+    margin-top: 20px;
   }
 }

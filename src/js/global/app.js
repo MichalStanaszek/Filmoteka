@@ -31,6 +31,7 @@ const PRIMARY_COLOR_HEX = '#FF6B01';
 const FONT_FAMILY = 'Roboto';
 
 let currentPage = 1;
+let totalPages = 0;
 let currentWebPage = ""; // "home" or "library" ta zmienna jest ustawiana automatycznie przy starcie całej strony
 let currentKeyword = "";
 
@@ -87,6 +88,7 @@ export default {
   LOCAL_STORAGE_WATCH_KEY,
   NUM_OF_MOVIES_PER_PAGE,
   currentPage,
+  totalPages,
   currentWebPage,
   currentKeyword,
   renderMovieCardHTML,

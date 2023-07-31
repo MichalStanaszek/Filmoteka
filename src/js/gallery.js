@@ -4,12 +4,17 @@ app.getMoviesTodayTrends = async function (page = app.currentPage) {
   const galleryULElement = document.getElementById(
     app.MOVIE_CARDS_PARENT_ELEMENT_ID
   );
-app.Loading.circle();
+
+  app.Loading.circle();
+
   const movies = await app.api.get(`movie/popular?page=${page}`);
+  console.log(movies);
   const movieCards = await app.showMovieCards(movies);
 
   galleryULElement.insertAdjacentHTML('afterbegin', movieCards);
+
   app.Loading.remove();
+  app.totalPages = movies.total_pages;
 };
 
 app.renderMovieCardHTML = async function (movieId) {
@@ -49,4 +54,3 @@ app.showMovieCards = async function (moviesArray) {
   return html;
 };
 app.getMoviesTodayTrends();
-

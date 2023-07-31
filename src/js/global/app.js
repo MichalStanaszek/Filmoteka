@@ -30,7 +30,6 @@ const NUM_OF_MOVIES_PER_PAGE = 20;
 const PRIMARY_COLOR_HEX = '#FF6B01';
 const FONT_FAMILY = 'Roboto';
 
-let env = 'dev'; // or any other if we move to PRODUCTION stage
 let currentPage = 1;
 let currentWebPage = ""; // "home" or "library" ta zmienna jest ustawiana automatycznie przy starcie całej strony
 let currentKeyword = "";
@@ -73,6 +72,8 @@ export default {
   getMoviesTodayTrends,
   getWatchedMovies,
   getQueuedMovies,
+  addMovieToQueued,
+  addMovieToWatched,
   MOVIE_WINDOW_BACKDROP_DIV_ELEMENT_ID,
   ABOUT_WINDOW_BACKDROP_DIV_ELEMENT_ID,
   ABOUT_WINDOW_CLOSE_BTN_ELEMENT_ID,

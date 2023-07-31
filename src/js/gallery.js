@@ -26,6 +26,12 @@ app.renderMovieCardHTML = async function (movieId) {
   for (const genre of movieObject.genres) {
     movieGenres.push(genre.name);
   }
+  let movieG = movieGenres;
+  if (movieGenres.length > 2) {
+     movieG= `${movieGenres[0]},${movieGenres[1]},Other`;
+  } else {
+     movieG= movieGenres;
+  }  
   const movieYear = movieObject.release_date.split('-')[0];
   const title = movieObject.original_title;
   const votes = movieObject.vote_average;
@@ -33,13 +39,13 @@ app.renderMovieCardHTML = async function (movieId) {
   const about = movieObject.overview;
 
   return `
-   <li class = "movie-card">
+   <li class = "movie-card" id="${app.createMovieCardId(movieId)}">
        <div class="movie-thumb">
         <img class="movie-image" src="${posterUrl}${poster}" alt="Poster image" loading="lazy" />
        </div>
       <div class="movie-info">
         <p class="movie-name">${title}</p>
-        <p class="movie-genres">${movieGenres} | ${movieYear}</p>
+        <p class="movie-genres">${movieG} | ${movieYear}</p>
       </div>
     </li>`;
 };

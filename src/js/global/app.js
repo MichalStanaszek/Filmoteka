@@ -45,6 +45,8 @@ let showMovieCards = null; // funkcja ma tworzyć liste kart filmów, pobierać 
 let getMoviesByKeyWord = null; // do tej zmiennej trzeba przypisać funkcje pobierania filmów z api, funkcja ma pobierać słowo kluczowe, a zwracać obiekt z filmami
 let getMoviesTodayTrends = null;
 let getMovieByID = null; // do tej zmiennej trzeba przypisać funkcje pobierania filmu z api, funkcja ma pobierać id filmu a zwracać obiekt filmu
+let addMovieToQueued = null;
+let addMovieToWatched = null;
 
 let onSearchFailed = null; // do tej zmiennej trzeba przypisać funkcje która będzie potrzebna aby wypisać błąd pod formularzem wyszukiwania filmów
 let onSearchSuccess = null;

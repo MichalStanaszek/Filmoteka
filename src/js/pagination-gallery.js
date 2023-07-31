@@ -13,18 +13,23 @@ function onPaginationDivClick(event) {
             app.currentPage = app.currentPage - 1;
             // sprawdz czy jest w app.currentKeyWord jakas wartosc, jesli tak -> wywołanie fukncji app.getMoviesByKeyWord (app.currentKeyWord)
             // jesli nie -> wywołanie funkcji app.getMoviesTodayTrends
-            if (app.currentKeyword) {
+            
+        } else if (buttonId === "right_arrow_btn") {
+            console.log("Kolejna strona")
+            app.currentPage = app.currentPage + 1;
+            if (app.currentKeyWord) {
                 app.getMoviesByKeyWord(app.currentKeyword);
             } else {
                 app.getMoviesTodayTrends();
             }
-        } else if (buttonId === "right_arrow_btn") {
-            console.log("Kolejna strona")
-            app.currentPage = app.currentPage + 1;
 
         } else {
                 app.currentPage = elementWhichWasClicked.value;
-
+        }
+        if (app.currentKeyword) {
+            app.getMoviesByKeyWord(app.currentKeyword);
+        } else {
+            app.getMoviesTodayTrends();
         }
 
     }}

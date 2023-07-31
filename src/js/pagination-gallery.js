@@ -1,10 +1,30 @@
 import app from './global/app';
 
-function activeLink() {
-    const buttons = document.querySelectorAll('.button');
+const paginationDiv = document.querySelector('div.pagination');
+paginationDiv.addEventListener("click", onPaginationDivClick);
 
-    buttons.forEach(button => button.classList.remove('active'))
-    event.target.classList.add('active')
-}
-const buttons = document.querySelectorAll('.button');
-buttons.forEach(button => button.addEventListener('click', activeLink));
+function onPaginationDivClick(event) {
+    const elementWhichWasClicked = event.target;
+    if (elementWhichWasClicked.nodeName === "BUTTON") {
+        const buttonId = elementWhichWasClicked.id
+        //
+        if (buttonId === "left_arrow_btn") {
+            console.log("Poprzednia strona")
+            app.currentPage = app.currentPage - 1;
+            // sprawdz czy jest w app.currentKeyWord jakas wartosc, jesli tak -> wywołanie fukncji app.getMoviesByKeyWord (app.currentKeyWord)
+            // jesli nie -> wywołanie funkcji app.getMoviesTodayTrends
+            if (app.currentKeyword) {
+                app.getMoviesByKeyWord(app.currentKeyword);
+            } else {
+                app.getMoviesTodayTrends();
+            }
+        } else if (buttonId === "right_arrow_btn") {
+            console.log("Kolejna strona")
+            app.currentPage = app.currentPage + 1;
+
+        } else {
+                app.currentPage = elementWhichWasClicked.value;
+
+        }
+
+    }}

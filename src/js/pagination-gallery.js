@@ -9,9 +9,10 @@ function onPaginationDivClick(event) {
         const buttonId = elementWhichWasClicked.id
         //
         if (buttonId === "left_arrow_btn") {
+            if (app.currentPage > 1){
             console.log("Poprzednia strona")
             app.currentPage = app.currentPage - 1;
-            
+            }
         } else if (buttonId === "right_arrow_btn") {
             console.log("Kolejna strona")
             app.currentPage = app.currentPage + 1;
@@ -28,3 +29,4 @@ function onPaginationDivClick(event) {
         }
 
     }}
+

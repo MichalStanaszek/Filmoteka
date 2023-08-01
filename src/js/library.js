@@ -1,6 +1,6 @@
 import app from './global/app';
 
-const getFromStorage = key => {
+function getFromStorage(key) {
   try {
     const serialisedState = localStorage.getItem(key);
     return serialisedState === null ? undefined : JSON.parse(serialisedState);
@@ -9,29 +9,28 @@ const getFromStorage = key => {
   }
 };
 
-app.getWatchedMovies = function () {
-  return getFromStorage(app.LOCAL_STORAGE_WATCH_KEY) || [];
-};
+async function showWatched() {
+  app.Loading.circle();
 
-app.getQueuedMovies = function () {
-  return getFromStorage(app.LOCAL_STORAGE_QUEUE_KEY) || [];
-};
-
-
-//  Funkcja do wyświetlania oglądanych filmów
-function showWatched() {
-  const watched = app.getWatchedMovies(); // Pobieramy dane o oglądanych filmach z Local Storage
+  const gallery = document.getElementById(app.MOVIE_CARDS_PARENT_ELEMENT_ID);
+  const watched = getFromStorage(app.LOCAL_STORAGE_WATCH_KEY) || [];
   
-  console.log(watched);
+  gallery.innerHTML = await app.renderMovieCardHTML(watched);
+
+  app.Loading.remove();
 }
 
-// Funkcja do wyświetlania filmów do obejrzenia
-function showQueue() {
-  const queue = app.getQueuedMovies(); // Pobieramy dane o filmach do obejrzenia z Local Storage
-  // displayWatchedMovies(queue); // Wyświetlamy listę filmów do obejrzenia na stronie
+async function showQueue() {
+  app.Loading.circle();
+
+  const gallery = document.getElementById(app.MOVIE_CARDS_PARENT_ELEMENT_ID);
+  const watched = getFromStorage(app.LOCAL_STORAGE_QUEUE_KEY) || [];
+  
+  gallery.innerHTML = await app.renderMovieCardHTML(watched);
+
+  app.Loading.remove();
 }
 
-// Przypisujemy event listenery do przycisków
 const watchedBtn = document.getElementById(app.WATCHED_BUTTON_ELEMENT_ID);
 const queueBtn = document.getElementById(app.QUEUE_BUTTON_ELEMENT_ID);
 

@@ -19,13 +19,13 @@ function onPaginationDivClick(event) {
       app.currentPage = elementWhichWasClicked.value;
     }
 
-    if (app.currentKeyword) {
-      app.getMoviesByKeyWord(app.currentKeyword);
-    } else {
-      app.getMoviesTodayTrends();
-    }
-
     console.log('current page: ' + app.currentPage);
+
+    if (app.currentKeyword) {
+      app.getMoviesByKeyWord(app.currentKeyword, app.currentPage);
+    } else {
+      app.getMoviesTodayTrends(app.currentPage);
+    }
   }
 }
 

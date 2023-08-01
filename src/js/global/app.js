@@ -1,16 +1,6 @@
 import api from './api.js';
 import { Loading, Notify } from 'notiflix';
 
-function createMovieCardId(movieId) {
-  return 'movie-' + movieId;
-}
-
-function getMovieIdFromMovieCardElement(moveCardElement) {
-  const movieId = moveCardElement.id.split('-');
-
-  return movieId[1];
-}
-
 const MOVIE_WINDOW_BACKDROP_DIV_ELEMENT_ID = 'movie-window-backdrop';
 const ABOUT_WINDOW_BACKDROP_DIV_ELEMENT_ID = 'about-window-backdrop';
 const SEARCH_FORM_ELEMENT_ID = 'search-form';
@@ -30,12 +20,17 @@ const NUM_OF_MOVIES_PER_PAGE = 20;
 const PRIMARY_COLOR_HEX = '#FF6B01';
 const FONT_FAMILY = 'Roboto';
 
-let currentPage = 1;
-let totalPages = 0;
-let currentWebPage = "";
-let currentKeyword = "";
+function createMovieCardId(movieId) {
+  return 'movie-' + movieId;
+}
 
-const renderMovieCardHTML = async function (movieId) {
+function getMovieIdFromMovieCardElement(moveCardElement) {
+  const movieId = moveCardElement.id.split('-');
+
+  return movieId[1];
+}
+
+async function renderMovieCardHTML(movieId) {
   try {
     const movieObject = await api.get('movie/' + movieId);
 
@@ -75,7 +70,7 @@ const renderMovieCardHTML = async function (movieId) {
   }
 };
 
-const showMovieCards = async function (moviesArray) {
+async function showMovieCards(moviesArray) {
   let html = '';
 
   for (const movie of moviesArray.results) {
@@ -85,7 +80,7 @@ const showMovieCards = async function (moviesArray) {
   return html;
 };
 
-const getMoviesByKeyWord = async function (keyword) {
+async function getMoviesByKeyWord(keyword, page = 1) {
   Loading.circle();
 
   const galleryULElement = document.getElementById(
@@ -95,7 +90,7 @@ const getMoviesByKeyWord = async function (keyword) {
   galleryULElement.innerHTML = '';
 
   const movies = await api.get(
-    `discover/movie?with_keywords=${keyword}&page=${currentPage}`
+    `discover/movie?with_keywords=${keyword}&page=${page}`
   );
   const movieCards = await showMovieCards(movies);
 
@@ -103,37 +98,44 @@ const getMoviesByKeyWord = async function (keyword) {
   Loading.remove();
 
   if (movies.total_results > 0) {
+    currentPage = movies.page;
     currentKeyword = keyword;
     totalPages = movies.total_pages;
+
     onSearchSuccess();
+
     galleryULElement.innerHTML = movieCards;
   } else {
+    currentPage = 1;
     currentKeyword = '';
     totalPages = 0;
+
     onSearchFailed();
   }
 
   setPaginationButtons();
 };
 
-const getMoviesTodayTrends = async function () {
+async function getMoviesTodayTrends(page = 1) {
   Loading.circle();
 
   const galleryULElement = document.getElementById(
     MOVIE_CARDS_PARENT_ELEMENT_ID
   );
 
-  const movies = await api.get(`movie/popular?page=${currentPage}`);
+  const movies = await api.get(`movie/popular?page=${page}`);
   const movieCards = await showMovieCards(movies);
 
   galleryULElement.innerHTML = movieCards;
 
+  currentPage = movies.page;
   totalPages = movies.total_pages;
+
   setPaginationButtons();
   Loading.remove();
 };
 
-const getMovieByID = async function (movieId) {
+async function getMovieByID(movieId) {
   Loading.circle();
 
   const movie = await api.get('movie/' + movieId);
@@ -143,22 +145,19 @@ const getMovieByID = async function (movieId) {
   return movie;
 };
 
-const onSearchFailed = function () {
+function onSearchFailed() {
   const searchMsg = document.querySelector('.search-msg');
-  
+
   searchMsg.classList.remove('hidden');
 };
 
-const onSearchSuccess = function () {
+function onSearchSuccess() {
   const searchMsg = document.querySelector('.search-msg');
 
   searchMsg.classList.add('hidden');
 };
 
-let getQueuedMovies = null;
-let getWatchedMovies = null;
-
-const setPaginationButtons = function () {
+function setPaginationButtons() {
   const firstBtn = document.getElementById('first-btn');
   const lastBtn = document.getElementById('last-btn');
 
@@ -233,6 +232,11 @@ const setPaginationButtons = function () {
   activeBtn.classList.add('active');
 };
 
+let currentPage = 1;
+let totalPages = 0;
+let currentWebPage = "";
+let currentKeyword = "";
+
 Loading.init({
   svgColor: PRIMARY_COLOR_HEX,
 });
@@ -251,8 +255,6 @@ export default {
   getMovieByID,
   getMoviesByKeyWord,
   getMoviesTodayTrends,
-  getWatchedMovies,
-  getQueuedMovies,
   MOVIE_WINDOW_BACKDROP_DIV_ELEMENT_ID,
   ABOUT_WINDOW_BACKDROP_DIV_ELEMENT_ID,
   ABOUT_WINDOW_CLOSE_BTN_ELEMENT_ID,

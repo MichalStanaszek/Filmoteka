@@ -17,6 +17,8 @@
   border-radius: 5px;
   overflow: hidden;
 
+  pointer-events: none;
+
   @media (max-width: 767.98px) {
     width: 280px;
     height: 398px;

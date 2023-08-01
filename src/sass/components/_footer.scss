@@ -1,5 +1,5 @@
 .footer {
-  background-color: $bcgFooter;
+  background-color: $bgFooter;
   height: 100px;
   width: 100%;
   padding-top: 28px;
@@ -20,9 +20,11 @@
     padding-bottom: 28px;
   }
 }
+
 .footer__container p {
   margin: 0;
 }
+
 .footer__container {
   display: flex;
   flex-direction: row;
@@ -34,6 +36,7 @@
 .footer__text {
   color: $txtFooter;
   line-height: calc(16 / 14);
+  
   @media screen and (min-width: 768px) {
     font-size: 16px;
     line-height: calc(19 / 16);
@@ -47,7 +50,7 @@
 }
 .footer__icon {
   justify-content: center;
-  fill: $bcgIcon;
+  fill: $primaryColor;
   margin-right: 10px;
   margin-left: 10px;
 }
@@ -59,6 +62,6 @@
 .open-modal-team {
   &::after {
     content: ' ';
-    background-color: $bcgIcon;
+    background-color: $primaryColor;
   }
 }

@@ -18,6 +18,13 @@
     &::placeholder {
       color: #ffffff;
     }
+
+    &:active,
+    &:focus,
+    &:focus-within,
+    &:checked {
+      background-color: transparent;
+    }
   }
 
   &__icon {

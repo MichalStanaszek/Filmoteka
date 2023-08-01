@@ -30,6 +30,10 @@
       color: $primaryColor;
       background: none;
     }
+
+    @include tablet {
+      font-size: 20px;
+    }
   }
 
   &__title {
@@ -55,7 +59,7 @@
       width: 100%;
       margin: auto;
       border-bottom: 1px solid black;
-      bottom: 0.15em;
+      bottom: -0.3em;
       transition: all 1s;
     }
 
@@ -114,60 +118,8 @@
   &__name {
     font-weight: 700;
   }
-}
 
-.team__name {
-  font-size: 18px;
-  font-weight: 600;
-  color: black;
-  transition-duration: 0.5s;
-
-  &:hover,
-  &:focus {
-    color: #ff6b08;
-  }
-
-  @media screen and (min-width: 768px) {
-    font-size: 19px;
-    align-content: center;
-  }
-
-  @media screen and (min-width: 1280px) {
-    font-size: 22px;
-  }
-}
-
-.team__role {
-  font-size: 15px;
-  font-weight: 500;
-  color: gray;
-
-  @media screen and (min-width: 1280px) {
-    font-size: 18px;
-  }
-}
-
-.team__card {
-  width: 100px;
-  height: auto;
-  border: none;
-  outline: none;
-  color: transparent;
-  background: transparent;
-  cursor: pointer;
-  position: relative;
-  z-index: 0;
-  border-radius: 10%;
-  margin-bottom: 10px;
-
-  @media screen and (min-width: 768px) {
-    width: 100%;
-    height: 100%;
-  }
-}
-.team__github {
-  &:hover,
-  &:focus {
-    fill: #ff6b08;
+  @include tablet {
+    width: calc((100% / 3) - 30px);
   }
 }

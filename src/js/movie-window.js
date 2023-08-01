@@ -47,33 +47,33 @@ function createMovieWindow(movieObject) {
 
   const markup = `
     <button id="close-btn" class="movie-window__close-btn button" type="button">&#9587;</button>
-    <div>
-      <img class="dummy" src="${moviePoster}" alt="dummy-img" />
+    <div class="movie-window__poster">
+      <img src="${moviePoster}" alt="'${movieTitle}' movie poster." />
     </div>
-    <div>
-      <h1 class="dummy__title">${movieTitle}</h1>
-      <div class="stats">
-        <ul class="stats__subtitles">
-          <li class="stats__list">Vote / Votes</li>
-          <li class="stats__list">Popularity</li>
-          <li class="stats__list">Original Title</li>
-          <li class="stats__list">Genre</li>
+    <div class="movie-window__details">
+      <h1 class="movie-window__title">${movieTitle}</h1>
+      <div class="movie-window__stats">
+        <ul class="stats-subtitles">
+          <li class="stats-list">Vote / Votes</li>
+          <li class="stats-list">Popularity</li>
+          <li class="stats-list">Original Title</li>
+          <li class="stats-list">Genre</li>
         </ul>
         <ul>
-          <li class="stats__result">
-            <span class="stats--color">${movieVote}</span> /
-            <span class="stats--color2">${movieNumOfVotes}</span>
+          <li class="stats-result">
+            <span class="stats-color">${movieVote}</span> /
+            <span class="stats-color2">${movieNumOfVotes}</span>
           </li>
-          <li class="stats__result"><span>${moviePopularity}</span></li>
-          <li class="stats__result">${movieOrigTitle}</li>
-          <li class="stats__result">${movieGenre}</li>
+          <li class="stats-result"><span>${moviePopularity}</span></li>
+          <li class="stats-result">${movieOrigTitle}</li>
+          <li class="stats-result">${movieGenre}</li>
         </ul>
       </div>
-      <div class="description">
-        <h2 class="description--header">ABOUT</h2>
+      <div class="movie-window__description">
+        <h2 class="description-header">ABOUT</h2>
         <p>${movieOverview}</p>
       </div>
-      <div class="modal-buttons">
+      <div class="movie-window__modal-buttons">
         <button class="button" type="button" data-movie="${movieObject.id}">ADD TO WATCHED</button>
         <button class="button" type="button" data-movie="${movieObject.id}">ADD TO QUEUE</button>
       </div>

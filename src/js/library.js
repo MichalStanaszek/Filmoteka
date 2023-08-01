@@ -7,15 +7,21 @@ function getFromStorage(key) {
   } catch (error) {
     console.log(error.message);
   }
-};
+}
 
 async function showWatched() {
   app.Loading.circle();
-
+  
   const gallery = document.getElementById(app.MOVIE_CARDS_PARENT_ELEMENT_ID);
   const watched = getFromStorage(app.LOCAL_STORAGE_WATCH_KEY) || [];
-  
-  gallery.innerHTML = await app.renderMovieCardHTML(watched);
+
+  let html = '';
+
+  for (const movie of watched) {
+    html += await app.renderMovieCardHTML(movie);
+  }
+
+  gallery.innerHTML = html;
 
   app.Loading.remove();
 }
@@ -25,7 +31,7 @@ async function showQueue() {
 
   const gallery = document.getElementById(app.MOVIE_CARDS_PARENT_ELEMENT_ID);
   const watched = getFromStorage(app.LOCAL_STORAGE_QUEUE_KEY) || [];
-  
+
   gallery.innerHTML = await app.renderMovieCardHTML(watched);
 
   app.Loading.remove();

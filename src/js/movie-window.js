@@ -86,8 +86,8 @@ function createMovieWindow(movieObject) {
   addToWatchedBtn = document.getElementById('add-to-watched-btn');
   addToQueueBtn = document.getElementById('add-to-queue-btn');
 
-  addToWatchedBtn.addEventListener('click', addMovieToLibrary);
-  addToQueueBtn.addEventListener('click', addMovieToLibrary);
+  addToWatchedBtn.addEventListener('click', onAddMovieToLibrary);
+  addToQueueBtn.addEventListener('click', onAddMovieToLibrary);
 
   window.addEventListener('keydown', onKeyPressed);
 
@@ -104,8 +104,8 @@ function destroyMovieWindow() {
   const movieWindow = document.getElementById(MOVIE_WINDOW_ID);
   const closeBtn = document.getElementById('close-btn');
 
-  addToWatchedBtn.removeEventListener('click', addMovieToLibrary);
-  addToQueueBtn.removeEventListener('click', addMovieToLibrary);
+  addToWatchedBtn.removeEventListener('click', onAddMovieToLibrary);
+  addToQueueBtn.removeEventListener('click', onAddMovieToLibrary);
 
   addToWatchedBtn = null;
   addToQueueBtn = null;
@@ -119,18 +119,24 @@ function destroyMovieWindow() {
   backdrop.classList.add('hidden');
 }
 
-function addMovieToLibrary(event) {
+function onAddMovieToLibrary(event) {
   if (event.target.nodeName === 'BUTTON') {
     const btnId = event.target.id;
     const movieId = event.target.dataset.movie;
     const movieName = event.target.dataset.name;
   
     if (btnId === 'add-to-watched-btn') {
-      localStorage.setItem(app.LOCAL_STORAGE_WATCH_KEY, movieId);
-      app.Notify.success(`Movie '${movieName}' was added to your WATCHED library!`);
+      if (app.addMovieToLibrary(movieId, app.LOCAL_STORAGE_WATCH_KEY)) {
+        app.Notify.success(`Movie '${movieName}' was added to your WATCHED library!`);
+      } else {
+        app.Notify.failure(`Movie '${movieName}' exist in your WATCHED library!`);
+      }
     } else if (btnId === 'add-to-queue-btn') {
-      localStorage.setItem(app.LOCAL_STORAGE_QUEUE_KEY, movieId);
-      app.Notify.success(`Movie '${movieName}' was added to your QUEUED library!`);
+      if (app.addMovieToLibrary(movieId, app.LOCAL_STORAGE_QUEUE_KEY)) {
+        app.Notify.success(`Movie '${movieName}' was added to your QUEUED library!`);
+      } else {
+        app.Notify.failure(`Movie '${movieName}' exist in your QUEUED library!`);
+      }
     }
   }
 }

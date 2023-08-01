@@ -171,6 +171,10 @@ function setPaginationButtons() {
 
   let activeBtn = null;
 
+  if (totalPages > 30) {
+    totalPages = 30;
+  }
+
   firstBtn.textContent = '1';
   firstBtn.value = '1';
 
@@ -232,6 +236,27 @@ function setPaginationButtons() {
   activeBtn.classList.add('active');
 };
 
+function addMovieToLibrary(movieId, key) {
+  let movies = JSON.parse(localStorage.getItem(key));
+
+  if (movies) {
+    for (const movie of movies) {
+      if (movie === movieId) {
+        return false;
+      }
+    }
+  } else {
+    movies = [];
+  }
+  
+  movies.push(movieId);
+
+  localStorage.removeItem(key);
+  localStorage.setItem(key, JSON.stringify(movies));
+
+  return true;
+}
+
 let currentPage = 1;
 let totalPages = 0;
 let currentWebPage = "";
@@ -276,4 +301,5 @@ export default {
   onSearchFailed,
   onSearchSuccess,
   setPaginationButtons,
+  addMovieToLibrary,
 };

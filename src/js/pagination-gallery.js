@@ -4,13 +4,18 @@ const paginationDiv = document.querySelector('div.pagination');
 
 const firstBtn = document.getElementById('first-btn');
 const lastBtn = document.getElementById('last-btn');
-const btn1 = document.getElementById('btn1');
-const btn2 = document.getElementById('btn2');
-const btn3 = document.getElementById('btn3');
-const btn4 = document.getElementById('btn4');
-const btn5 = document.getElementById('btn5');
 
-function setButtons() {
+app.setPaginationButtons = function () {
+  const btn1 = document.getElementById('btn1');
+  const btn2 = document.getElementById('btn2');
+  const btn3 = document.getElementById('btn3');
+  const btn4 = document.getElementById('btn4');
+  const btn5 = document.getElementById('btn5');
+
+  const buttonsArray = [btn1, btn2, btn3, btn4, btn5];
+
+  let activeBtn = null;
+
   firstBtn.textContent = '1';
   firstBtn.value = '1';
 
@@ -58,12 +63,19 @@ function setButtons() {
     btn3.value = app.currentPage;
 
     btn4.textContent = app.currentPage + 1;
-    btn4.value = app.currentPage;
+    btn4.value = app.currentPage + 1;
 
     btn5.textContent = app.currentPage + 2;
     btn5.value = app.currentPage + 2;
   }
-}
+
+  buttonsArray.forEach(btn => {
+    btn.classList.remove('active');
+  });
+
+  activeBtn = buttonsArray.find(btn => btn.value == app.currentPage);
+  activeBtn.classList.add('active');
+};
 
 function onPaginationDivClick(event) {
   const elementWhichWasClicked = event.target;
@@ -72,17 +84,15 @@ function onPaginationDivClick(event) {
 
     if (buttonId === 'left-btn') {
       if (app.currentPage > 1) {
-        app.currentPage = app.currentPage - 1;
+        app.currentPage -= 1;
       }
     } else if (buttonId === 'right-btn') {
       if (app.currentPage < app.totalPages - 1) {
-        app.currentPage = app.currentPage + 1;
+        app.currentPage += 1;
       }
     } else {
       app.currentPage = elementWhichWasClicked.value;
     }
-
-    setButtons();
 
     if (app.currentKeyword) {
       app.getMoviesByKeyWord(app.currentKeyword);
@@ -90,12 +100,8 @@ function onPaginationDivClick(event) {
       app.getMoviesTodayTrends();
     }
 
-    console.log("current page: " + app.currentPage);
+    console.log('current page: ' + app.currentPage);
   }
 }
 
-setButtons();
-
 paginationDiv.addEventListener('click', onPaginationDivClick);
-
-btn1.classList.add('active');

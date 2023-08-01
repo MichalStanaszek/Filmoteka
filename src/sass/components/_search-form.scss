@@ -1,9 +1,9 @@
-.FormSearch {
+.search-form {
   display: flex;
   justify-content: center;
   padding-top: 60px;
 
-  .FormInput {
+  &__input {
     border: 0;
     background-color: inherit;
     width: 280px;
@@ -20,7 +20,7 @@
     }
   }
 
-  .IconLupa {
+  &__icon {
     width: 12px;
     height: 12px;
     margin-left: -15px;
@@ -35,7 +35,7 @@
   }
 }
 
-.FormError {
+.search-msg {
   color: #ff001b;
   font-family: var(--roboto);
   font-size: 14px;
@@ -44,22 +44,22 @@
   text-align: center;
 }
 
-@media screen and (min-width: 768px) {
-  .FormInput {
+@include tablet {
+  .search-form__input {
     width: 336px;
   }
 
-  .FormError {
+  .search-msg {
     margin-top: 20px;
   }
 }
 
-@media screen and (min-width: 1280px) {
-  .FormInput {
+@include desktop {
+  .search-form__input {
     width: 394px;
   }
 
-  .FormError {
+  .search-msg {
     margin-top: 20px;
   }
 }

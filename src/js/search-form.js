@@ -1,11 +1,21 @@
 import app from './global/app';
 
-const formError = document.querySelector('.FormError');
+const searchMsg = document.querySelector('.search-msg');
+const searchForm = document.getElementById(app.SEARCH_FORM_ELEMENT_ID);
+
+function onSubmit(event) {
+  const keyword = event.target.elements.keyword.value;
+
+  event.preventDefault();
+  app.getMoviesByKeyWord(keyword);
+}
+
+searchForm.addEventListener('submit', onSubmit);
 
 app.onSearchFailed = function () {
-  formError.classList.remove('hidden');
+  searchMsg.classList.remove('hidden');
 };
 
 app.onSearchSuccess = function () {
-  formError.classList.add('hidden');
-}
+  searchMsg.classList.add('hidden');
+};

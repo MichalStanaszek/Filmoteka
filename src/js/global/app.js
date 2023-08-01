@@ -32,27 +32,25 @@ const FONT_FAMILY = 'Roboto';
 
 let currentPage = 1;
 let totalPages = 0;
-let currentWebPage = ""; // "home" or "library" ta zmienna jest ustawiana automatycznie przy starcie całej strony
+let currentWebPage = "";
 let currentKeyword = "";
 
-/*
- UWAGA! Zanim użyjemy funkcji którejś z poniższych sprawdzamy za pomocą if czy ta funkcja już istnieje
- */
+let renderMovieCardHTML = null;
+let showMovieCards = null;
 
-let renderMovieCardHTML = null; // do tej zmiennej trzeba przypisać funkcje renderowania karty filmu, funkcja ma pobierać id filmu a zwracać html
-let showMovieCards = null; // funkcja ma tworzyć liste kart filmów, pobierać ma tablice z filmami, a zwracać html listy filmów
-
-let getMoviesByKeyWord = null; // do tej zmiennej trzeba przypisać funkcje pobierania filmów z api, funkcja ma pobierać słowo kluczowe, a zwracać obiekt z filmami
+let getMoviesByKeyWord = null;
 let getMoviesTodayTrends = null;
-let getMovieByID = null; // do tej zmiennej trzeba przypisać funkcje pobierania filmu z api, funkcja ma pobierać id filmu a zwracać obiekt filmu
+let getMovieByID = null;
 let addMovieToQueued = null;
 let addMovieToWatched = null;
 
-let onSearchFailed = null; // do tej zmiennej trzeba przypisać funkcje która będzie potrzebna aby wypisać błąd pod formularzem wyszukiwania filmów
+let onSearchFailed = null;
 let onSearchSuccess = null;
 
-let getQueuedMovies = null; // do tej zmiennej trzeba przypisać funkcje pobierania filmów z Local Storage, funkcja ma zwracać obiekt z filmami
-let getWatchedMovies = null; // do tej zmiennej trzeba przypisać funkcje pobierania filmów z Local Storage, funkcja ma zwracać obiekt  z filmami
+let getQueuedMovies = null;
+let getWatchedMovies = null;
+
+let setPaginationButtons = null;
 
 Loading.init({
   svgColor: PRIMARY_COLOR_HEX,
@@ -95,4 +93,5 @@ export default {
   showMovieCards,
   onSearchFailed,
   onSearchSuccess,
+  setPaginationButtons,
 };

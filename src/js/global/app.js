@@ -257,6 +257,36 @@ function addMovieToLibrary(movieId, key) {
   return true;
 }
 
+function getFromStorage(key) {
+  try {
+    const serialisedState = localStorage.getItem(key);
+    return serialisedState === null ? undefined : JSON.parse(serialisedState);
+  } catch (error) {
+    console.log(error.message);
+  }
+}
+
+async function showMoviesFromLocalStorage(key) {
+  Loading.circle();
+  
+  const gallery = document.getElementById(MOVIE_CARDS_PARENT_ELEMENT_ID);
+  const movies = getFromStorage(key) || [];
+
+  totalPages = Math.floor(movies.length / NUM_OF_MOVIES_PER_PAGE);
+  currentPage = 1;
+
+  let html = '';
+
+  for (const movie of movies) {
+    html += await renderMovieCardHTML(movie);
+  }
+
+  gallery.innerHTML = html;
+
+  setPaginationButtons();
+  Loading.remove();
+}
+
 let currentPage = 1;
 let totalPages = 0;
 let currentWebPage = "";
@@ -302,4 +332,5 @@ export default {
   onSearchSuccess,
   setPaginationButtons,
   addMovieToLibrary,
+  showMoviesFromLocalStorage,
 };

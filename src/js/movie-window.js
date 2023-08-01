@@ -74,14 +74,29 @@ function createMovieWindow(movieObject) {
         <p>${movieOverview}</p>
       </div>
       <div class="movie-window__modal-buttons">
-        <button class="button" type="button" data-movie="${movieObject.id}">ADD TO WATCHED</button>
-        <button class="button" type="button" data-movie="${movieObject.id}">ADD TO QUEUE</button>
+        <button 
+          id="add-to-watched-btn" 
+          class="button" type="button" 
+          data-movie="${movieObject.id}"
+          data-movieName="${movieTitle}">ADD TO WATCHED</button>
+        <button 
+          id="add-to-queue-btn" 
+          class="button" 
+          type="button" 
+          data-movie="${movieObject.id}"
+          data-movieName="${movieTitle}">ADD TO QUEUE</button>
       </div>
     </div>`;
 
   movieWindow.insertAdjacentHTML('afterbegin', markup);
 
   const closeBtn = document.getElementById('close-btn');
+
+  addToWatchedBtn = document.getElementById('add-to-watched-btn');
+  addToQueueBtn = document.getElementById('add-to-queue-btn');
+
+  addToWatchedBtn.addEventListener('click', addMovieToLibrary);
+  addToQueueBtn.addEventListener('click', addMovieToLibrary);
 
   window.addEventListener('keydown', onKeyPressed);
 
@@ -98,6 +113,12 @@ function destroyMovieWindow() {
   const movieWindow = document.getElementById(MOVIE_WINDOW_ID);
   const closeBtn = document.getElementById('close-btn');
 
+  addToWatchedBtn.removeEventListener('click', addMovieToLibrary);
+  addToQueueBtn.removeEventListener('click', addMovieToLibrary);
+
+  addToWatchedBtn = null;
+  addToQueueBtn = null;
+
   window.removeEventListener('keydown', destroyMovieWindow);
 
   backdrop.removeEventListener('click', destroyMovieWindow);
@@ -107,5 +128,25 @@ function destroyMovieWindow() {
   backdrop.classList.add('hidden');
 }
 
+function addMovieToLibrary(event) {
+  if (event.target.nodeName === 'BUTTON') {
+    const btnId = event.target.id;
+    const movieId = event.target.dataset.movie;
+    const movieName = event.target.dataset.movieName;
+  
+    if (btnId === 'add-to-watched-btn') {
+      app.addMovieToWatched(movieId);
+      app.Notify.success(`Movie '${movieName}' was added to your WATCHED library!`);
+    } else if (btnId === 'add-to-queue-btn') {
+      app.addMovieToQueued(movieId);
+      app.Notify.success(`Movie '${movieName}' was added to your QUEUED library!`);
+    }
+  }
+}
+
 const galleryDiv = document.getElementById(app.MOVIE_CARDS_PARENT_ELEMENT_ID);
+
+let addToWatchedBtn = null;
+let addToQueueBtn = null;
+
 galleryDiv.addEventListener('click', onGalleryUlClick);

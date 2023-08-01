@@ -1,12 +1,11 @@
 import app from './global/app';
 
-// Funkcje do odczytu danych z Local Storage
 const getFromStorage = key => {
   try {
     const serialisedState = localStorage.getItem(key);
     return serialisedState === null ? undefined : JSON.parse(serialisedState);
   } catch (error) {
-    console.log(error.messege);
+    console.log(error.message);
   }
 };
 
@@ -18,44 +17,12 @@ app.getQueuedMovies = function () {
   return getFromStorage(app.LOCAL_STORAGE_QUEUE_KEY) || [];
 };
 
-// Funkcje do zapisu danych do Local Storage
-function setWatchedMovies(array) {
-  localStorage.setItem(app.LOCAL_STORAGE_WATCH_KEY, JSON.stringify(array));
-}
-
-function setQueuedMovies(array) {
-  localStorage.setItem(app.LOCAL_STORAGE_QUEUE_KEY, JSON.stringify(array));
-}
-
-// Wywołujemy funkcje do odczytu danych i przechowujemy je w zmiennych
-const watchedData = app.getWatchedMovies();
-const queueData = app.getQueuedMovies();
-
-// Możemy teraz korzystać z danych w zmiennych watchedData i queueData
-console.log('Oglądane filmy:', watchedData);
-console.log('Filmy do obejrzenia:', queueData);
-
-// function displayWatchedMovies(movies) {
-//   const posterListElement = document.getElementById('posterList');
-//   posterListElement.innerHTML = '';
-
-//   if (movies.length === 0) {
-//     posterListElement.innerHTML = '<p>Brak filmów do wyświetlenia.</p>';
-//   } else {
-//     movies.forEach(posterUrl => {
-//       const posterImageElement = document.createElement('img');
-//       posterImageElement.src = posterUrl;
-//       posterImageElement.alt = 'Plakat filmowy';
-//       posterImageElement.style.maxWidth = '200px';
-//       posterListElement.appendChild(posterImageElement);
-//     });
-//   }
-// }
 
 //  Funkcja do wyświetlania oglądanych filmów
 function showWatched() {
   const watched = app.getWatchedMovies(); // Pobieramy dane o oglądanych filmach z Local Storage
-  // displayWatchedMovies(watched); // Wyświetlamy listę oglądanych filmów na stronie
+  
+  console.log(watched);
 }
 
 // Funkcja do wyświetlania filmów do obejrzenia
@@ -65,10 +32,10 @@ function showQueue() {
 }
 
 // Przypisujemy event listenery do przycisków
-const watchedBtn = document.getElementById('watched-button');
-const queueBtn = document.getElementById('queue-button');
+const watchedBtn = document.getElementById(app.WATCHED_BUTTON_ELEMENT_ID);
+const queueBtn = document.getElementById(app.QUEUE_BUTTON_ELEMENT_ID);
+
 watchedBtn.addEventListener('click', showWatched);
 queueBtn.addEventListener('click', showQueue);
 
-// Wywołujemy funkcję showWatched() automatycznie przy załadowaniu strony
 showWatched();

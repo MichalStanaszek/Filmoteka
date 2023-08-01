@@ -35,22 +35,203 @@ let totalPages = 0;
 let currentWebPage = "";
 let currentKeyword = "";
 
-let renderMovieCardHTML = null;
-let showMovieCards = null;
+const renderMovieCardHTML = async function (movieId) {
+  try {
+    const movieObject = await api.get('movie/' + movieId);
 
-let getMoviesByKeyWord = null;
-let getMoviesTodayTrends = null;
-let getMovieByID = null;
-let addMovieToQueued = null;
-let addMovieToWatched = null;
+    const moviePoster =
+      'https://image.tmdb.org/t/p/w500' + movieObject.poster_path;
+    const movieYear = movieObject.release_date.split('-')[0];
+    const movieTitle = movieObject.original_title;
 
-let onSearchFailed = null;
-let onSearchSuccess = null;
+    const genresArray = [];
+
+    let genres = '';
+
+    for (const genre of movieObject.genres) {
+      genresArray.push(genre.name);
+    }
+
+    if (genresArray.length > 2) {
+      genres = `${genresArray[0]}, ${genresArray[1]}, Other`;
+    } else {
+      genres = genresArray.join(', ');
+    }
+
+    return `
+      <li class = "movie-card" id="${createMovieCardId(movieId)}">
+          <div class="movie-thumb">
+            <img class="movie-image" src="${moviePoster}" alt="Poster image" loading="lazy" />
+          </div>
+          <div class="movie-info">
+            <p class="movie-name">${movieTitle}</p>
+            <p class="movie-genres">${genres} | ${movieYear}</p>
+          </div>
+        </li>`;
+  } catch (error) {
+    console.log('API: Movie ' + movieId + " don't exist in api database!");
+
+    return '';
+  }
+};
+
+const showMovieCards = async function (moviesArray) {
+  let html = '';
+
+  for (const movie of moviesArray.results) {
+    html += await renderMovieCardHTML(movie.id);
+  }
+
+  return html;
+};
+
+const getMoviesByKeyWord = async function (keyword) {
+  Loading.circle();
+
+  const galleryULElement = document.getElementById(
+    MOVIE_CARDS_PARENT_ELEMENT_ID
+  );
+
+  galleryULElement.innerHTML = '';
+
+  const movies = await api.get(
+    `discover/movie?with_keywords=${keyword}&page=${currentPage}`
+  );
+  const movieCards = await showMovieCards(movies);
+
+
+  Loading.remove();
+
+  if (movies.total_results > 0) {
+    currentKeyword = keyword;
+    totalPages = movies.total_pages;
+    onSearchSuccess();
+    galleryULElement.innerHTML = movieCards;
+  } else {
+    currentKeyword = '';
+    totalPages = 0;
+    onSearchFailed();
+  }
+
+  setPaginationButtons();
+};
+
+const getMoviesTodayTrends = async function () {
+  Loading.circle();
+
+  const galleryULElement = document.getElementById(
+    MOVIE_CARDS_PARENT_ELEMENT_ID
+  );
+
+  const movies = await api.get(`movie/popular?page=${currentPage}`);
+  const movieCards = await showMovieCards(movies);
+
+  galleryULElement.innerHTML = movieCards;
+
+  totalPages = movies.total_pages;
+  setPaginationButtons();
+  Loading.remove();
+};
+
+const getMovieByID = async function (movieId) {
+  Loading.circle();
+
+  const movie = await api.get('movie/' + movieId);
+
+  Loading.remove();
+
+  return movie;
+};
+
+const onSearchFailed = function () {
+  const searchMsg = document.querySelector('.search-msg');
+  
+  searchMsg.classList.remove('hidden');
+};
+
+const onSearchSuccess = function () {
+  const searchMsg = document.querySelector('.search-msg');
+
+  searchMsg.classList.add('hidden');
+};
 
 let getQueuedMovies = null;
 let getWatchedMovies = null;
 
-let setPaginationButtons = null;
+const setPaginationButtons = function () {
+  const firstBtn = document.getElementById('first-btn');
+  const lastBtn = document.getElementById('last-btn');
+
+  const btn1 = document.getElementById('btn1');
+  const btn2 = document.getElementById('btn2');
+  const btn3 = document.getElementById('btn3');
+  const btn4 = document.getElementById('btn4');
+  const btn5 = document.getElementById('btn5');
+
+  const buttonsArray = [btn1, btn2, btn3, btn4, btn5];
+
+  let activeBtn = null;
+
+  firstBtn.textContent = '1';
+  firstBtn.value = '1';
+
+  lastBtn.textContent = totalPages;
+  lastBtn.value = totalPages;
+
+  if (currentPage < 3) {
+    btn1.textContent = '1';
+    btn1.value = '1';
+
+    btn2.textContent = '2';
+    btn2.value = '2';
+
+    btn3.textContent = '3';
+    btn3.value = '3';
+
+    btn4.textContent = '4';
+    btn4.value = '4';
+
+    btn5.textContent = '5';
+    btn5.value = '5';
+  } else if (currentPage > totalPages - 3) {
+    btn1.textContent = totalPages - 4;
+    btn1.value = totalPages - 4;
+
+    btn2.textContent = totalPages - 3;
+    btn2.value = totalPages - 3;
+
+    btn3.textContent = totalPages - 2;
+    btn3.value = totalPages - 2;
+
+    btn4.textContent = totalPages - 1;
+    btn4.value = totalPages - 1;
+
+    btn5.textContent = totalPages;
+    btn5.value = totalPages;
+  } else {
+    btn1.textContent = currentPage - 2;
+    btn1.value = currentPage - 2;
+
+    btn2.textContent = currentPage - 1;
+    btn2.value = currentPage - 1;
+
+    btn3.textContent = currentPage;
+    btn3.value = currentPage;
+
+    btn4.textContent = currentPage + 1;
+    btn4.value = currentPage + 1;
+
+    btn5.textContent = currentPage + 2;
+    btn5.value = currentPage + 2;
+  }
+
+  buttonsArray.forEach(btn => {
+    btn.classList.remove('active');
+  });
+
+  activeBtn = buttonsArray.find(btn => btn.value == currentPage);
+  activeBtn.classList.add('active');
+};
 
 Loading.init({
   svgColor: PRIMARY_COLOR_HEX,
@@ -64,6 +245,7 @@ Notify.init({
 export default {
   api,
   Loading,
+  Notify,
   createMovieCardId,
   getMovieIdFromMovieCardElement,
   getMovieByID,
@@ -71,8 +253,6 @@ export default {
   getMoviesTodayTrends,
   getWatchedMovies,
   getQueuedMovies,
-  addMovieToQueued,
-  addMovieToWatched,
   MOVIE_WINDOW_BACKDROP_DIV_ELEMENT_ID,
   ABOUT_WINDOW_BACKDROP_DIV_ELEMENT_ID,
   ABOUT_WINDOW_CLOSE_BTN_ELEMENT_ID,

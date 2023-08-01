@@ -1,14 +1,5 @@
 import app from './global/app';
 
-app.getMovieByID = async function (movieId) {
-  app.Loading.circle();
-
-  const movie = await app.api.get('movie/' + movieId);
-
-  app.Loading.remove();
-  return movie;
-};
-
 const MOVIE_WINDOW_ID = 'movie-window';
 
 function onGalleryUlClick(event) {
@@ -78,13 +69,13 @@ function createMovieWindow(movieObject) {
           id="add-to-watched-btn" 
           class="button" type="button" 
           data-movie="${movieObject.id}"
-          data-movieName="${movieTitle}">ADD TO WATCHED</button>
+          data-name="${movieTitle}">ADD TO WATCHED</button>
         <button 
           id="add-to-queue-btn" 
           class="button" 
           type="button" 
           data-movie="${movieObject.id}"
-          data-movieName="${movieTitle}">ADD TO QUEUE</button>
+          data-name="${movieTitle}">ADD TO QUEUE</button>
       </div>
     </div>`;
 
@@ -132,13 +123,13 @@ function addMovieToLibrary(event) {
   if (event.target.nodeName === 'BUTTON') {
     const btnId = event.target.id;
     const movieId = event.target.dataset.movie;
-    const movieName = event.target.dataset.movieName;
+    const movieName = event.target.dataset.name;
   
     if (btnId === 'add-to-watched-btn') {
-      app.addMovieToWatched(movieId);
+      localStorage.setItem(app.LOCAL_STORAGE_WATCH_KEY, movieId);
       app.Notify.success(`Movie '${movieName}' was added to your WATCHED library!`);
     } else if (btnId === 'add-to-queue-btn') {
-      app.addMovieToQueued(movieId);
+      localStorage.setItem(app.LOCAL_STORAGE_QUEUE_KEY, movieId);
       app.Notify.success(`Movie '${movieName}' was added to your QUEUED library!`);
     }
   }

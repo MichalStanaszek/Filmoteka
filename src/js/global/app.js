@@ -89,31 +89,43 @@ async function getMoviesByKeyWord(keyword, page = 1) {
 
   galleryULElement.innerHTML = '';
 
-  const movies = await api.get(
-    `discover/movie?with_keywords=${keyword}&page=${page}`
-  );
-  const movieCards = await showMovieCards(movies);
+  const keywords = await api.get('search/keyword?query=' + keyword);
 
+  console.log(keywords);
 
-  Loading.remove();
-
-  if (movies.total_results > 0) {
-    currentPage = movies.page;
-    currentKeyword = keyword;
-    totalPages = movies.total_pages;
-
-    onSearchSuccess();
-
-    galleryULElement.innerHTML = movieCards;
-  } else {
-    currentPage = 1;
-    currentKeyword = '';
-    totalPages = 0;
-
+  if (!keywords.results) {
     onSearchFailed();
+  } else {
+    const kwStr = keywords.results.map(kw => kw.name).join(",");
+    console.log(kwStr);
+    const params = {
+      with_keywords: kwStr,
+      sort_by: 'popularity.desc',
+      page: page,
+    }
+    const searchParams = new URLSearchParams(params).toString();
+    const movies = await api.get(`discover/movie?${searchParams}`);
+
+    if (movies.total_results > 0) {
+      const movieCards = await showMovieCards(movies);
+
+      currentPage = movies.page;
+      currentKeyword = keyword;
+      totalPages = movies.total_pages;
+      galleryULElement.innerHTML = movieCards;
+  
+      onSearchSuccess();
+    } else {
+      currentPage = 1;
+      currentKeyword = '';
+      totalPages = 0;
+  
+      onSearchFailed();
+    }
   }
 
   setPaginationButtons();
+  Loading.remove();
 };
 
 async function getMoviesTodayTrends(page = 1) {
@@ -290,6 +302,7 @@ async function showMoviesFromLocalStorage(key) {
 let currentPage = 1;
 let totalPages = 0;
 let currentWebPage = "";
+let currentLibraryPage = "";
 let currentKeyword = "";
 
 Loading.init({
@@ -325,6 +338,7 @@ export default {
   currentPage,
   totalPages,
   currentWebPage,
+  currentLibraryPage,
   currentKeyword,
   renderMovieCardHTML,
   showMovieCards,

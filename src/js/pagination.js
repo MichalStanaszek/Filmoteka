@@ -24,7 +24,11 @@ function onPaginationDivClick(event) {
     if (app.currentKeyword) {
       app.getMoviesByKeyWord(app.currentKeyword, app.currentPage);
     } else {
-      app.getMoviesTodayTrends(app.currentPage);
+      if (app.currentWebPage === 'library') {
+        app.showMoviesFromLocalStorage(app.LOCAL_STORAGE_WATCH_KEY);
+      } else {
+        app.getMoviesTodayTrends(app.currentPage);
+      }
     }
   }
 }

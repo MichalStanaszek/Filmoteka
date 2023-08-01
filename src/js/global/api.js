@@ -26,6 +26,8 @@ async function get(path) {
   const accept = 'application/json';
   const auth = ACCESS_TOKEN;
 
+  console.log(url);
+  
   try {
     const response = await axios({
       method: 'GET',

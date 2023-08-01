@@ -93,7 +93,7 @@ async function getMoviesByKeyWord(keyword, page = 1) {
 
   console.log(keywords);
 
-  if (!keywords.results) {
+  if (keywords.results.length === 0) {
     onSearchFailed();
   } else {
     const kwStr = keywords.results.map(kw => kw.name).join(",");

@@ -6,10 +6,7 @@
   border: 1px solid black;
 
   font-size: 10px;
-
-  @include tablet {
-    height: auto;
-  }
+  height: auto;
 
   &__close-btn {
     position: absolute;
@@ -92,7 +89,7 @@
 }
 
 .member-card {
-  width: 50%;
+  max-width: 50%;
   text-align: center;
 
   &__images {

@@ -175,82 +175,97 @@ function onSearchSuccess() {
 };
 
 function setPaginationButtons() {
-  const firstBtn = document.getElementById('first-btn');
-  const lastBtn = document.getElementById('last-btn');
+  if (totalPages) {
+    const firstBtn = document.getElementById('first-btn');
+    const lastBtn = document.getElementById('last-btn');
 
-  const btn1 = document.getElementById('btn1');
-  const btn2 = document.getElementById('btn2');
-  const btn3 = document.getElementById('btn3');
-  const btn4 = document.getElementById('btn4');
-  const btn5 = document.getElementById('btn5');
+    const leftBtn = document.getElementById('left-btn');
+    const rightBtn = document.getElementById('right-btn');
+  
+    const btn1 = document.getElementById('btn1');
+    const btn2 = document.getElementById('btn2');
+    const btn3 = document.getElementById('btn3');
+    const btn4 = document.getElementById('btn4');
+    const btn5 = document.getElementById('btn5');
+  
+    const buttonsArray = [btn1, btn2, btn3, btn4, btn5];
+  
+    let activeBtn = null;
 
-  const buttonsArray = [btn1, btn2, btn3, btn4, btn5];
+    firstBtn.classList.remove('hidden');
+    lastBtn.classList.remove('hidden');
+    
+    leftBtn.classList.remove('hidden');
+    rightBtn.classList.remove('hidden');
 
-  let activeBtn = null;
-
-  if (totalPages > 30) {
-    totalPages = 30;
+    buttonsArray.forEach(btn => {
+      btn.classList.remove('hidden');
+    });
+  
+    if (totalPages > 40) {
+      totalPages = 40;
+    }
+  
+    firstBtn.textContent = '1';
+    firstBtn.value = '1';
+  
+    lastBtn.textContent = totalPages;
+    lastBtn.value = totalPages;
+  
+    if (currentPage < 3) {
+      btn1.textContent = '1';
+      btn1.value = '1';
+  
+      btn2.textContent = '2';
+      btn2.value = '2';
+  
+      btn3.textContent = '3';
+      btn3.value = '3';
+  
+      btn4.textContent = '4';
+      btn4.value = '4';
+  
+      btn5.textContent = '5';
+      btn5.value = '5';
+    } else if (currentPage > totalPages - 3) {
+      btn1.textContent = totalPages - 4;
+      btn1.value = totalPages - 4;
+  
+      btn2.textContent = totalPages - 3;
+      btn2.value = totalPages - 3;
+  
+      btn3.textContent = totalPages - 2;
+      btn3.value = totalPages - 2;
+  
+      btn4.textContent = totalPages - 1;
+      btn4.value = totalPages - 1;
+  
+      btn5.textContent = totalPages;
+      btn5.value = totalPages;
+    } else {
+      btn1.textContent = currentPage - 2;
+      btn1.value = currentPage - 2;
+  
+      btn2.textContent = currentPage - 1;
+      btn2.value = currentPage - 1;
+  
+      btn3.textContent = currentPage;
+      btn3.value = currentPage;
+  
+      btn4.textContent = currentPage + 1;
+      btn4.value = currentPage + 1;
+  
+      btn5.textContent = currentPage + 2;
+      btn5.value = currentPage + 2;
+    }
+  
+    buttonsArray.forEach(btn => {
+      btn.classList.remove('active');
+    });
+  
+    activeBtn = buttonsArray.find(btn => btn.value == currentPage);
+    activeBtn.classList.add('active');
   }
-
-  firstBtn.textContent = '1';
-  firstBtn.value = '1';
-
-  lastBtn.textContent = totalPages;
-  lastBtn.value = totalPages;
-
-  if (currentPage < 3) {
-    btn1.textContent = '1';
-    btn1.value = '1';
-
-    btn2.textContent = '2';
-    btn2.value = '2';
-
-    btn3.textContent = '3';
-    btn3.value = '3';
-
-    btn4.textContent = '4';
-    btn4.value = '4';
-
-    btn5.textContent = '5';
-    btn5.value = '5';
-  } else if (currentPage > totalPages - 3) {
-    btn1.textContent = totalPages - 4;
-    btn1.value = totalPages - 4;
-
-    btn2.textContent = totalPages - 3;
-    btn2.value = totalPages - 3;
-
-    btn3.textContent = totalPages - 2;
-    btn3.value = totalPages - 2;
-
-    btn4.textContent = totalPages - 1;
-    btn4.value = totalPages - 1;
-
-    btn5.textContent = totalPages;
-    btn5.value = totalPages;
-  } else {
-    btn1.textContent = currentPage - 2;
-    btn1.value = currentPage - 2;
-
-    btn2.textContent = currentPage - 1;
-    btn2.value = currentPage - 1;
-
-    btn3.textContent = currentPage;
-    btn3.value = currentPage;
-
-    btn4.textContent = currentPage + 1;
-    btn4.value = currentPage + 1;
-
-    btn5.textContent = currentPage + 2;
-    btn5.value = currentPage + 2;
-  }
-
-  buttonsArray.forEach(btn => {
-    btn.classList.remove('active');
-  });
-
-  activeBtn = buttonsArray.find(btn => btn.value == currentPage);
-  activeBtn.classList.add('active');
 };
 
 function addMovieToLibrary(movieId, key) {

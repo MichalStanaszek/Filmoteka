@@ -283,14 +283,21 @@ function getFromStorage(key) {
   }
 }
 
-async function showMoviesFromLocalStorage(key) {
+async function showMoviesFromLocalStorage(key, page = 1) {
   Loading.circle('Loading movies from library');
   
   const gallery = document.getElementById(MOVIE_CARDS_PARENT_ELEMENT_ID);
-  const movies = getFromStorage(key) || [];
 
-  totalPages = Math.floor(movies.length / NUM_OF_MOVIES_PER_PAGE);
-  currentPage = 1;
+  let movies = getFromStorage(key) || [];
+
+  totalPages = Math.ceil(movies.length / NUM_OF_MOVIES_PER_PAGE);
+  currentPage = page;
+
+  const offset = (page - 1) * NUM_OF_MOVIES_PER_PAGE;
+
+  movies = movies.slice(offset, offset + NUM_OF_MOVIES_PER_PAGE);
+
+  console.log(movies);
 
   let html = '';
 

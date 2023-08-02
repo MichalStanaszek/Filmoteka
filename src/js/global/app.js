@@ -85,7 +85,7 @@ async function showMovieCards(moviesArray) {
 };
 
 async function getMoviesByKeyWord(keyword, page = 1) {
-  Loading.circle();
+  Loading.circle('Please wait... Loading today popular movies!');
 
   const galleryULElement = document.getElementById(
     MOVIE_CARDS_PARENT_ELEMENT_ID
@@ -313,6 +313,7 @@ let currentKeyword = "";
 
 Loading.init({
   svgColor: PRIMARY_COLOR_HEX,
+  fontFamily: FONT_FAMILY,
 });
 
 Notify.init({

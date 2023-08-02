@@ -15,7 +15,7 @@ function onGalleryUlClick(event) {
 }
 
 function onKeyPressed(event) {
-  if (event.key === "Escape") {
+  if (event.key === "Escape" && addToWatchedBtn) {
     destroyMovieWindow();
   }
 }
@@ -79,29 +79,35 @@ function createMovieWindow(movieObject) {
       </div>
     </div>`;
 
-  movieWindow.insertAdjacentHTML('afterbegin', markup);
+  movieWindow.innerHTML = markup;
 
   const closeBtn = document.getElementById('close-btn');
 
   addToWatchedBtn = document.getElementById('add-to-watched-btn');
   addToQueueBtn = document.getElementById('add-to-queue-btn');
 
-  addToWatchedBtn.addEventListener('click', onAddMovieToLibrary);
-  addToQueueBtn.addEventListener('click', onAddMovieToLibrary);
-
   window.addEventListener('keydown', onKeyPressed);
 
   backdrop.addEventListener('click', destroyMovieWindow);
+  movieWindow.addEventListener('click', destroyMovieWindow);
   closeBtn.addEventListener('click', destroyMovieWindow);
+
+  addToWatchedBtn.addEventListener('click', onAddMovieToLibrary);
+  addToQueueBtn.addEventListener('click', onAddMovieToLibrary);
 
   backdrop.classList.remove('hidden');
 }
 
-function destroyMovieWindow() {
+function destroyMovieWindow(event = null) {
   const backdrop = document.getElementById(
     app.MOVIE_WINDOW_BACKDROP_DIV_ELEMENT_ID
   );
   const movieWindow = document.getElementById(MOVIE_WINDOW_ID);
+
+  if (event && event.target == movieWindow) {
+    return;
+  }
+
   const closeBtn = document.getElementById('close-btn');
 
   addToWatchedBtn.removeEventListener('click', onAddMovieToLibrary);
@@ -113,6 +119,7 @@ function destroyMovieWindow() {
   window.removeEventListener('keydown', destroyMovieWindow);
 
   backdrop.removeEventListener('click', destroyMovieWindow);
+  movieWindow.removeEventListener('click', destroyMovieWindow);
   closeBtn.removeEventListener('click', destroyMovieWindow);
 
   movieWindow.innerHTML = '';

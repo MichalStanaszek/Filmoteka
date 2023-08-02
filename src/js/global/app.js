@@ -34,6 +34,10 @@ async function renderMovieCardHTML(movieId) {
   try {
     const movieObject = await api.get('movie/' + movieId);
 
+    if (movieObject.poster_path === null) {
+      return '';
+    }
+
     const moviePoster =
       'https://image.tmdb.org/t/p/w500' + movieObject.poster_path;
     const movieYear = movieObject.release_date.split('-')[0];
@@ -89,22 +93,24 @@ async function getMoviesByKeyWord(keyword, page = 1) {
 
   galleryULElement.innerHTML = '';
 
-  const keywords = await api.get('search/keyword?query=' + keyword);
+  //const keywords = await api.get('search/keyword?query=' + keyword);
 
-  console.log(keywords);
+  //console.log(keywords);
 
-  if (keywords.results.length === 0) {
-    onSearchFailed();
-  } else {
-    const kwStr = keywords.results.map(kw => kw.name).join(",");
-    console.log(kwStr);
-    const params = {
-      with_keywords: kwStr,
-      sort_by: 'popularity.desc',
-      page: page,
-    }
-    const searchParams = new URLSearchParams(params).toString();
-    const movies = await api.get(`discover/movie?${searchParams}`);
+  //if (keywords.results.length === 0) {
+  //  onSearchFailed();
+  //} else {
+  //  const kwStr = keywords.results.map(kw => kw.name).join(",");
+  //  console.log(kwStr);
+  //  const params = {
+  //    with_keywords: kwStr,
+  //    sort_by: 'popularity.desc',
+  //    page: page,
+  //  }
+  //  const searchParams = new URLSearchParams(params).toString();
+    const movies = await api.get(`search/movie?query=${keyword}&page=${page}`);
+
+    console.log(movies);
 
     if (movies.total_results > 0) {
       const movieCards = await showMovieCards(movies);
@@ -122,7 +128,7 @@ async function getMoviesByKeyWord(keyword, page = 1) {
   
       onSearchFailed();
     }
-  }
+  //}
 
   setPaginationButtons();
   Loading.remove();

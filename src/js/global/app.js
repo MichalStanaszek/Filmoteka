@@ -110,8 +110,6 @@ async function getMoviesByKeyWord(keyword, page = 1) {
   //  const searchParams = new URLSearchParams(params).toString();
     const movies = await api.get(`search/movie?query=${keyword}&page=${page}`);
 
-    console.log(movies);
-
     if (movies.total_results > 0) {
       const movieCards = await showMovieCards(movies);
 
@@ -121,6 +119,7 @@ async function getMoviesByKeyWord(keyword, page = 1) {
       galleryULElement.innerHTML = movieCards;
   
       onSearchSuccess();
+      console.log(currentKeyword);
     } else {
       currentPage = 1;
       currentKeyword = '';
@@ -154,7 +153,7 @@ async function getMoviesTodayTrends(page = 1) {
 };
 
 async function getMovieByID(movieId) {
-  Loading.circle();
+  Loading.circle('Loading movie data');
 
   const movie = await api.get('movie/' + movieId);
 
@@ -285,7 +284,7 @@ function getFromStorage(key) {
 }
 
 async function showMoviesFromLocalStorage(key) {
-  Loading.circle();
+  Loading.circle('Loading movies from library');
   
   const gallery = document.getElementById(MOVIE_CARDS_PARENT_ELEMENT_ID);
   const movies = getFromStorage(key) || [];
@@ -310,6 +309,42 @@ let totalPages = 0;
 let currentWebPage = "";
 let currentLibraryPage = "";
 let currentKeyword = "";
+
+function setPage(page) {
+  currentPage = page;
+}
+
+function setWebPage(webPage) {
+  currentWebPage = webPage;
+}
+
+function setLibraryPage(libraryPage) {
+  currentLibraryPage = libraryPage;
+}
+
+function setKeyword(keyword) {
+  currentKeyword = keyword;
+}
+
+function getPage() {
+  return currentPage;
+}
+
+function getTotalPages() {
+  return totalPages;
+}
+
+function getWebPage() {
+  return currentWebPage;
+}
+
+function getLibraryPage() {
+  return currentLibraryPage;
+}
+
+function getKeyword() {
+  return currentKeyword;
+}
 
 Loading.init({
   svgColor: PRIMARY_COLOR_HEX,
@@ -347,6 +382,15 @@ export default {
   currentWebPage,
   currentLibraryPage,
   currentKeyword,
+  setPage,
+  setWebPage,
+  setLibraryPage,
+  setKeyword,
+  getPage,
+  getTotalPages,
+  getWebPage,
+  getLibraryPage,
+  getKeyword,
   renderMovieCardHTML,
   showMovieCards,
   onSearchFailed,

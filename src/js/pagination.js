@@ -7,27 +7,28 @@ function onPaginationDivClick(event) {
   if (elementWhichWasClicked.nodeName === 'BUTTON') {
     const buttonId = elementWhichWasClicked.id;
 
+    let currentPage = app.getPage();
+    const currentKeyword = app.getKeyword();
+
     if (buttonId === 'left-btn') {
-      if (app.currentPage > 1) {
-        app.currentPage -= 1;
+      if (currentPage > 1) {
+        currentPage -= 1;
       }
     } else if (buttonId === 'right-btn') {
-      if (app.currentPage < app.totalPages - 1) {
-        app.currentPage += 1;
+      if (currentPage < app.getTotalPages() - 1) {
+        currentPage += 1;
       }
     } else {
-      app.currentPage = elementWhichWasClicked.value;
+      currentPage = elementWhichWasClicked.value;
     }
 
-    console.log('current page: ' + app.currentPage);
-
-    if (app.currentKeyword) {
-      app.getMoviesByKeyWord(app.currentKeyword, app.currentPage);
+    if (currentKeyword) {
+      app.getMoviesByKeyWord(currentKeyword, currentPage);
     } else {
-      if (app.currentWebPage === 'library') {
+      if (app.getWebPage() === 'library') {
         app.showMoviesFromLocalStorage(app.LOCAL_STORAGE_WATCH_KEY);
       } else {
-        app.getMoviesTodayTrends(app.currentPage);
+        app.getMoviesTodayTrends(currentPage);
       }
     }
   }

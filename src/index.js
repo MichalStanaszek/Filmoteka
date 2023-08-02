@@ -1,6 +1,6 @@
 import app from './js/global/app';
 
-app.currentWebPage = 'home';
+app.setWebPage('home');
 
 import './js/search-form';
 import './js/gallery';

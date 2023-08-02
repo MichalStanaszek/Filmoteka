@@ -1,6 +1,6 @@
 import app from './js/global/app';
 
-app.currentWebPage = 'library';
+app.setWebPage('library');
 
 import './js/library';
 import './js/pagination';

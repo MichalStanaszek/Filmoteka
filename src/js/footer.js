@@ -10,8 +10,13 @@ let isWindowOpened = false;
 openAboutWindow.addEventListener('click', openModal);
 
 function closeModal(event = null) {
-  if (event && event.currentTarget === aboutWindow) {
-    return;
+  if (event) {
+    if (
+      event.target.id != app.ABOUT_WINDOW_CLOSE_BTN_ELEMENT_ID &&
+      event.target.id != app.ABOUT_WINDOW_BACKDROP_DIV_ELEMENT_ID
+    ) {
+      return;
+    }
   }
 
   window.removeEventListener('keydown', escapeModal);

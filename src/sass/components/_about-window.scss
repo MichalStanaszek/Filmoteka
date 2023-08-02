@@ -30,8 +30,6 @@
   }
 
   &__title {
-    pointer-events: none;
-
     color: black;
     font-style: normal;
     font-weight: 500;
@@ -71,8 +69,6 @@
   }
 
   &__content {
-    pointer-events: none;
-
     height: 100%;
 
     display: flex;
@@ -107,8 +103,6 @@
   }
 
   &__github {
-    pointer-events: all;
-    
     position: absolute;
     right: 0px;
     bottom: 0px;

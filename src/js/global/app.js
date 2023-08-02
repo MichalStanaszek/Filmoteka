@@ -85,7 +85,7 @@ async function showMovieCards(moviesArray) {
 };
 
 async function getMoviesByKeyWord(keyword, page = 1) {
-  Loading.circle('Please wait... Loading today popular movies!');
+  Loading.circle('Loading movies by keyword');
 
   const galleryULElement = document.getElementById(
     MOVIE_CARDS_PARENT_ELEMENT_ID
@@ -135,7 +135,7 @@ async function getMoviesByKeyWord(keyword, page = 1) {
 };
 
 async function getMoviesTodayTrends(page = 1) {
-  Loading.circle();
+  Loading.circle("Loading popular movies");
 
   const galleryULElement = document.getElementById(
     MOVIE_CARDS_PARENT_ELEMENT_ID

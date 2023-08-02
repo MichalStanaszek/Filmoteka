@@ -1,6 +1,7 @@
 import app from './global/app';
 
 const MOVIE_WINDOW_ID = 'movie-window';
+const CLOSE_BUTTON_ID = 'close-btn';
 
 function onGalleryUlClick(event) {
   const element = event.target;
@@ -15,7 +16,7 @@ function onGalleryUlClick(event) {
 }
 
 function onKeyPressed(event) {
-  if (event.key === "Escape" && addToWatchedBtn) {
+  if (event.key === 'Escape' && addToWatchedBtn) {
     destroyMovieWindow();
   }
 }
@@ -37,7 +38,7 @@ function createMovieWindow(movieObject) {
   const movieOverview = movieObject.overview;
 
   const markup = `
-    <button id="close-btn" class="movie-window__close-btn button" type="button">&#9587;</button>
+    <button id="${CLOSE_BUTTON_ID}" class="movie-window__close-btn button" type="button">&#9587;</button>
     <div class="movie-window__poster">
       <img src="${moviePoster}" alt="'${movieTitle}' movie poster." />
     </div>
@@ -81,7 +82,7 @@ function createMovieWindow(movieObject) {
 
   movieWindow.innerHTML = markup;
 
-  const closeBtn = document.getElementById('close-btn');
+  const closeBtn = document.getElementById(CLOSE_BUTTON_ID);
 
   addToWatchedBtn = document.getElementById('add-to-watched-btn');
   addToQueueBtn = document.getElementById('add-to-queue-btn');
@@ -89,7 +90,6 @@ function createMovieWindow(movieObject) {
   window.addEventListener('keydown', onKeyPressed);
 
   backdrop.addEventListener('click', destroyMovieWindow);
-  movieWindow.addEventListener('click', destroyMovieWindow);
   closeBtn.addEventListener('click', destroyMovieWindow);
 
   addToWatchedBtn.addEventListener('click', onAddMovieToLibrary);
@@ -99,16 +99,24 @@ function createMovieWindow(movieObject) {
 }
 
 function destroyMovieWindow(event = null) {
+  if (event) {
+    if (
+      event.target.id != CLOSE_BUTTON_ID &&
+      event.target.id != app.MOVIE_WINDOW_BACKDROP_DIV_ELEMENT_ID
+    ) {
+      return;
+    }
+  }
+
   const backdrop = document.getElementById(
     app.MOVIE_WINDOW_BACKDROP_DIV_ELEMENT_ID
   );
   const movieWindow = document.getElementById(MOVIE_WINDOW_ID);
 
-  if (event && event.target == movieWindow) {
-    return;
-  }
+  console.log('Zamykanie okna Movie');
+  console.dir(event);
 
-  const closeBtn = document.getElementById('close-btn');
+  const closeBtn = document.getElementById(CLOSE_BUTTON_ID);
 
   addToWatchedBtn.removeEventListener('click', onAddMovieToLibrary);
   addToQueueBtn.removeEventListener('click', onAddMovieToLibrary);
@@ -119,7 +127,6 @@ function destroyMovieWindow(event = null) {
   window.removeEventListener('keydown', destroyMovieWindow);
 
   backdrop.removeEventListener('click', destroyMovieWindow);
-  movieWindow.removeEventListener('click', destroyMovieWindow);
   closeBtn.removeEventListener('click', destroyMovieWindow);
 
   movieWindow.innerHTML = '';
@@ -131,18 +138,26 @@ function onAddMovieToLibrary(event) {
     const btnId = event.target.id;
     const movieId = event.target.dataset.movie;
     const movieName = event.target.dataset.name;
-  
+
     if (btnId === 'add-to-watched-btn') {
       if (app.addMovieToLibrary(movieId, app.LOCAL_STORAGE_WATCH_KEY)) {
-        app.Notify.success(`Movie '${movieName}' was added to your WATCHED library!`);
+        app.Notify.success(
+          `Movie '${movieName}' was added to your WATCHED library!`
+        );
       } else {
-        app.Notify.failure(`Movie '${movieName}' exist in your WATCHED library!`);
+        app.Notify.failure(
+          `Movie '${movieName}' exist in your WATCHED library!`
+        );
       }
     } else if (btnId === 'add-to-queue-btn') {
       if (app.addMovieToLibrary(movieId, app.LOCAL_STORAGE_QUEUE_KEY)) {
-        app.Notify.success(`Movie '${movieName}' was added to your QUEUED library!`);
+        app.Notify.success(
+          `Movie '${movieName}' was added to your QUEUED library!`
+        );
       } else {
-        app.Notify.failure(`Movie '${movieName}' exist in your QUEUED library!`);
+        app.Notify.failure(
+          `Movie '${movieName}' exist in your QUEUED library!`
+        );
       }
     }
   }

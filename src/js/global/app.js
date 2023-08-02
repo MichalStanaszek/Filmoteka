@@ -284,22 +284,18 @@ function getFromStorage(key) {
 }
 
 async function showMoviesFromLocalStorage(key, page = 1) {
-  Loading.circle('Loading movies from library');
-  
   const gallery = document.getElementById(MOVIE_CARDS_PARENT_ELEMENT_ID);
+  const offset = (page - 1) * NUM_OF_MOVIES_PER_PAGE;
 
   let movies = getFromStorage(key) || [];
+  let html = '';
+
+  Loading.circle('Loading movies from library');
 
   totalPages = Math.ceil(movies.length / NUM_OF_MOVIES_PER_PAGE);
   currentPage = page;
 
-  const offset = (page - 1) * NUM_OF_MOVIES_PER_PAGE;
-
   movies = movies.slice(offset, offset + NUM_OF_MOVIES_PER_PAGE);
-
-  console.log(movies);
-
-  let html = '';
 
   for (const movie of movies) {
     html += await renderMovieCardHTML(movie);
